@@ -90,154 +90,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Automatic-Speech-Recognition-with-Deep-Neural-Networks-for-Impaired-Speech"><a href="#Automatic-Speech-Recognition-with-Deep-Neural-Networks-for-Impaired-Speech" class="headerlink" title="Automatic Speech Recognition with Deep Neural Networks for Impaired Speech"></a>Automatic Speech Recognition with Deep Neural Networks for Impaired Speech</h1><h2 id="Database"><a href="#Database" class="headerlink" title="Database"></a>Database</h2><p><img src="C:\Users\11913\AppData\Roaming\Typora\typora-user-images\image-20201228190842210.png" alt="image-20201228190842210"></p>
+        <h1 id="Automatic-Speech-Recognition-with-Deep-Neural-Networks-for-Impaired-Speech"><a href="#Automatic-Speech-Recognition-with-Deep-Neural-Networks-for-Impaired-Speech" class="headerlink" title="Automatic Speech Recognition with Deep Neural Networks for Impaired Speech"></a>Automatic Speech Recognition with Deep Neural Networks for Impaired Speech</h1><h2 id="Database"><a href="#Database" class="headerlink" title="Database"></a>Database</h2><p><img src="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%861/image-20201228190842210.png" alt="image-20201228190842210"></p>
 <p>​    In total, 5586 utterances for speakers with dysanthria and 10931 utterances for control speakers.</p>
-<h2 id="System’s-Architecture"><a href="#System’s-Architecture" class="headerlink" title="System’s Architecture"></a>System’s Architecture</h2><h3 id="Feature-Extraction"><a href="#Feature-Extraction" class="headerlink" title="Feature Extraction"></a>Feature Extraction</h3><p>​    features: 13 MFCCs; 40 filterbank features</p>
-<p>​    windows: 25ms</p>
-<p>​    shift: 10ms for control speakers; 15ms for dysanthric speakers</p>
-<p>​    SI: LDA (40 dimensions) + MLLT</p>
-<p>​    SD: fMLLR; 100-dimensional iVectors</p>
-<h3 id="Acoustic-Modeling"><a href="#Acoustic-Modeling" class="headerlink" title="Acoustic Modeling"></a>Acoustic Modeling</h3><h4 id="Classical-Architectures"><a href="#Classical-Architectures" class="headerlink" title="Classical Architectures"></a>Classical Architectures</h4><p>​    1800 HMM states and a total of 9000 Gaussians</p>
-<table>
-<thead>
-<tr>
-<th>Architecture</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>MONO</td>
-<td>Monophone model with MFCC features</td>
-</tr>
-<tr>
-<td>TRI</td>
-<td>Basic triphone model with features MFCC+Δ+ ΔΔ</td>
-</tr>
-<tr>
-<td>TRI-SI</td>
-<td>Triphone model applied MFCC+LDA+MLLT</td>
-</tr>
-<tr>
-<td>TRI-SD</td>
-<td>Triphone model added MFCC+LDA+MLLT+fMLLR</td>
-</tr>
-<tr>
-<td>TRI-SDdis</td>
-<td>TRI-SD with a discriminative MMI and a feature-space MMI training. (learning rate = 0.001)</td>
-</tr>
-</tbody></table>
-<p>​    subspace Gaussian Mixture Models with 8000 states and 19000 substates</p>
-<table>
-<thead>
-<tr>
-<th>Architecture</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>sGMM</td>
-<td>Subspace GMM on top of SD features MFCC+LDA+MLLT+fMLLR</td>
-</tr>
-<tr>
-<td>sGMM2</td>
-<td>Subspace GMM with fMLLR</td>
-</tr>
-</tbody></table>
-<h4 id="Neural-Network-Architectures"><a href="#Neural-Network-Architectures" class="headerlink" title="Neural Network Architectures"></a>Neural Network Architectures</h4><p>​    alignments is obtained with MFCC+LDA+MLLT+fMLLR features</p>
-<table>
-<thead>
-<tr>
-<th>Architecture</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>DNN<sub>CE</sub></td>
-<td>DNN with cross-entropy. 6 hidden layers, 1024 neurons and 1800 output units. initialised with stacked RBMs</td>
-</tr>
-<tr>
-<td>DNN<sub>sMBR</sub></td>
-<td>Departing from DNN<sub>CE</sub>, 6 iterations of state-level minimum Bayes risk (sMBR) are applied</td>
-</tr>
-<tr>
-<td>CNN<sub>ba</sub></td>
-<td>CNN with convolution along the frequency axis. 2 convolutional layers and a learning rate of 0.008</td>
-</tr>
-<tr>
-<td>CNN<sub>sMBR</sub></td>
-<td>CNN<sub>ba</sub> + DNN<sub>sMBR</sub></td>
-</tr>
-<tr>
-<td>TDNN</td>
-<td>high-resolution MFCC features. 3 hidden layers with p-norm input dimension of 2000 and output dimension of 250. learning rate from 0.01 to 0.007</td>
-</tr>
-<tr>
-<td>TDNNiV</td>
-<td>add 100-dim iVectors to the 40-dim high-resolution MFCC input features</td>
-</tr>
-<tr>
-<td>LSTM</td>
-<td>3 hidden layers with 1024 neurons. learning rate from 0.0012 to 0.00036. momentum 0.5</td>
-</tr>
-<tr>
-<td>LSTMiV</td>
-<td>add 100-dim iVectors to the 40-dim high-resolution MFCC input features</td>
-</tr>
-</tbody></table>
-<h3 id="LM-and-Pronunciation-Lexicon"><a href="#LM-and-Pronunciation-Lexicon" class="headerlink" title="LM and Pronunciation Lexicon"></a>LM and Pronunciation Lexicon</h3><p>​    3-gram LM with interpolated Kneser-Ney discounting on the training data transcripts</p>
-<p>​    for the lexicon, we choose the Carnegie Mellon University Pronouncing Dictionary for North American English</p>
-<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><p>​    use 14 speakers for training and test the systems on the 15th. </p>
-<p>​    For cross-validation in neural networks training, use the data coming from a speaker with mild dysarthria speaker.</p>
-<p><img src="C:\Users\11913\AppData\Roaming\Typora\typora-user-images\image-20201228195206977.png" alt="image-20201228195206977"></p>
-<p><img src="C:\Users\11913\AppData\Roaming\Typora\typora-user-images\image-20201228195434056.png" alt="image-20201228195434056"></p>
-<h1 id="On-Improving-Acoustic-Models-For-TORGO-Dysarthric-Speech-Database"><a href="#On-Improving-Acoustic-Models-For-TORGO-Dysarthric-Speech-Database" class="headerlink" title="On Improving Acoustic Models For TORGO Dysarthric Speech Database"></a>On Improving Acoustic Models For TORGO Dysarthric Speech Database</h1><p>​    这篇论文主要是对上一篇论文进行调参，使得系统的表现最好</p>
-<h2 id="System’s-Architecture-1"><a href="#System’s-Architecture-1" class="headerlink" title="System’s Architecture"></a>System’s Architecture</h2><h3 id="Acoustic-Modeling-1"><a href="#Acoustic-Modeling-1" class="headerlink" title="Acoustic Modeling"></a>Acoustic Modeling</h3><h4 id="GMM-HMM-Acoustic-Modeling"><a href="#GMM-HMM-Acoustic-Modeling" class="headerlink" title="GMM-HMM Acoustic Modeling"></a>GMM-HMM Acoustic Modeling</h4><h5 id="Frame-Rate-and-Word-Position-Dependency-of-Phones"><a href="#Frame-Rate-and-Word-Position-Dependency-of-Phones" class="headerlink" title="Frame Rate and Word Position Dependency of Phones"></a>Frame Rate and Word Position Dependency of Phones</h5><p><img src="C:\Users\11913\AppData\Roaming\Typora\typora-user-images\image-20201228201903558.png" alt="image-20201228201903558"></p>
-<p>​    use frame shift of 15ms for dysarthric speakers and position independent phone sets</p>
-<h5 id="Number-of-Context-Dependent-States"><a href="#Number-of-Context-Dependent-States" class="headerlink" title="Number of Context Dependent States"></a>Number of Context Dependent States</h5><p>​    The total number of Gaussians was fixed at 9000.</p>
-<p><img src="C:\Users\11913\AppData\Roaming\Typora\typora-user-images\image-20201228202211548.png" alt="image-20201228202211548"></p>
-<h5 id="Dimension-of-LDA-Features"><a href="#Dimension-of-LDA-Features" class="headerlink" title="Dimension of LDA Features"></a>Dimension of LDA Features</h5><p><img src="C:\Users\11913\AppData\Roaming\Typora\typora-user-images\image-20201228202452817.png" alt="image-20201228202452817"></p>
-<p>​        choose the dimensionality of LDA features as 30.</p>
-<h5 id="Speaker-Normalized-FMLLR-Features"><a href="#Speaker-Normalized-FMLLR-Features" class="headerlink" title="Speaker Normalized FMLLR Features"></a>Speaker Normalized FMLLR Features</h5><p>​    FMLLR feature are also 30-dimensional.</p>
-<p><img src="C:\Users\11913\AppData\Roaming\Typora\typora-user-images\image-20201228202745858.png" alt="image-20201228202745858"></p>
-<h4 id="DNN-HMM-Acoustic-Modeling"><a href="#DNN-HMM-Acoustic-Modeling" class="headerlink" title="DNN-HMM Acoustic Modeling"></a>DNN-HMM Acoustic Modeling</h4><p>​    mini-batch size of 256 frames; learning rate of 0.008; FMLLR features were stacked over a context window of 11 frames (±5)</p>
-<h5 id="Number-of-Hidden-Layers-and-Nodes"><a href="#Number-of-Hidden-Layers-and-Nodes" class="headerlink" title="Number of Hidden Layers and Nodes"></a>Number of Hidden Layers and Nodes</h5><p><img src="C:\Users\11913\AppData\Roaming\Typora\typora-user-images\image-20201228203241191.png" alt="image-20201228203241191"></p>
-<p>​    used 4 hidden layers with sigmoid activation functions and 1024 neurons in each layer for all DNNs.</p>
-<h5 id="Dropout-for-DNN-Generalization"><a href="#Dropout-for-DNN-Generalization" class="headerlink" title="Dropout for DNN Generalization"></a>Dropout for DNN Generalization</h5><p>​    apply a dropout factor of 0.2 for the first four DNN training epochs</p>
-<p><img src="C:\Users\11913\AppData\Roaming\Typora\typora-user-images\image-20201228203844345.png" alt="image-20201228203844345"></p>
-<h1 id="Dysarthric-Speech-Recognition-with-Lattice-free-MMI"><a href="#Dysarthric-Speech-Recognition-with-Lattice-free-MMI" class="headerlink" title="Dysarthric Speech Recognition with Lattice-free MMI"></a>Dysarthric Speech Recognition with Lattice-free MMI</h1><p>​    It shows that time-delay neural network (TDNN) acoustic models trained with the LF-MMI objective </p>
-<h2 id="Database-1"><a href="#Database-1" class="headerlink" title="Database"></a>Database</h2><p><img src="C:\Users\11913\AppData\Roaming\Typora\typora-user-images\image-20201228205532561.png" alt="image-20201228205532561"></p>
-<p>​    这与上两篇论文的数据略有出入，但是区别非常小（16571与16394）</p>
-<h2 id="System’s-Architectures"><a href="#System’s-Architectures" class="headerlink" title="System’s Architectures"></a>System’s Architectures</h2><p>​    leave-one-out cross-validation;</p>
-<p>​    split the evaluation of isolated and multi-word utterances by treating the two tasks separately</p>
-<h3 id="HMM-GMM"><a href="#HMM-GMM" class="headerlink" title="HMM/GMM"></a>HMM/GMM</h3><p>​    features与第一篇相同; model phones independent of their position in words</p>
-<h3 id="HMM-DNN"><a href="#HMM-DNN" class="headerlink" title="HMM/DNN"></a>HMM/DNN</h3><p>​    hybird HMM/DNN models are based on the well-tuned Kaldi recipes for the 5-hour subset of the Librispeech corpus.</p>
-<p>​    the main system is a 13-layer factorised TDNN model trained with the sequence-discriminative LF-MMI objective function.</p>
-<p>​    speed perturbed version at 0.9 and 1.1 times the original speed.</p>
-<h3 id="LM"><a href="#LM" class="headerlink" title="LM"></a>LM</h3><p>​    isolated word: unigram model; sentences: bigram LM</p>
-<p>​    trained the LMs on the data of all speakers</p>
-<h2 id="Results-1"><a href="#Results-1" class="headerlink" title="Results"></a>Results</h2><p><img src="C:\Users\11913\AppData\Roaming\Typora\typora-user-images\image-20201228214715944.png" alt="image-20201228214715944"></p>
-<p>​    LF-MMI models make much fewer insertion errors</p>
-<p><img src="C:\Users\11913\AppData\Roaming\Typora\typora-user-images\image-20201228215633794.png" alt="image-20201228215633794"></p>
-<p>​    approximate speaking rate information by computing mean phoneme durations</p>
-<h3 id="speed-perturbation"><a href="#speed-perturbation" class="headerlink" title="speed perturbation"></a>speed perturbation</h3><p>​    To test the effects of speed perturbation, train LF-MMI models on the original data only, but increasing the number of epochs by a factor of 3 to compensate for the lower amount of training data.</p>
-<p><img src="C:\Users\11913\AppData\Roaming\Typora\typora-user-images\image-20201228220735035.png" alt="image-20201228220735035"></p>
-<h3 id="Frame-shift"><a href="#Frame-shift" class="headerlink" title="Frame shift"></a>Frame shift</h3><p><img src="C:\Users\11913\AppData\Roaming\Typora\typora-user-images\image-20201228221403856.png" alt="image-20201228221403856"></p>
-<p>​    10ms for the entire data does not reduce performance on dysarthric speech. This is useful because the constant frame shift does not require prior knowledge about the speaker.</p>
-<h1 id="Dysarthric-Speech-Recognition-using-Convolutional-Recurrent-Neural-Networks"><a href="#Dysarthric-Speech-Recognition-using-Convolutional-Recurrent-Neural-Networks" class="headerlink" title="Dysarthric Speech Recognition using Convolutional Recurrent Neural Networks"></a>Dysarthric Speech Recognition using Convolutional Recurrent Neural Networks</h1><h2 id="database"><a href="#database" class="headerlink" title="database"></a>database</h2><p>​    only the following label of classes out of 530 classes have between 30 to 50 clips per class</p>
-<p><img src="C:\Users\11913\AppData\Roaming\Typora\typora-user-images\image-20201229163135463.png" alt="image-20201229163135463"></p>
-<p>​        except the words number 1,3 and 14, in total with 16 words.</p>
-<p>​        Divide these 16 data samples as 80% for training subset, 20% for testing subset.</p>
-<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><p>​    MFCC; samples rate as 16000, clip duration as 1000 milliseconds, duration of frequency analysis window as 30ms, window stride as 10ms</p>
-<h2 id="System’s-Architectures-1"><a href="#System’s-Architectures-1" class="headerlink" title="System’s Architectures"></a>System’s Architectures</h2><p>​    cross entropy mean, softmax of a cross entropy with logits and the ADAM optimizer</p>
-<h3 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h3><p>​    first layer: filter with standard deviation 0.01 and size as 20(filter height) x 8(filter width) x 64(filter number) x 1 (stride), bias = 0, ReLU activation function, dropout function; (max)pooling layer with filter and stride as 1 x 2 x 2 x 1</p>
-<p>​    second layer: filter with standard deviation 0.01 and size as 10 x 4 x 64 x 64, bias = 0. Finally, flatten the shape to be in 1-dim</p>
-<p>​    third layer: fully connected layer</p>
-<h3 id="CRNN"><a href="#CRNN" class="headerlink" title="CRNN"></a>CRNN</h3><p>​    first CNN block: convolution layer(MFCC,filter size as 10 x 4 x 48 x 1, valid padding, 2 x 2 stride) + ReLU layer + dropout layer</p>
-<p>​    second block: unidirectional RNN block(two RNN layers include 60 neurons, GRU) + ReLU layer + dropout layer</p>
-<h2 id="Results-2"><a href="#Results-2" class="headerlink" title="Results"></a>Results</h2><p><img src="C:\Users\11913\AppData\Roaming\Typora\typora-user-images\image-20201229184548804.png" alt="image-20201229184548804"></p>
-<h1 id="Significance-of-Feature-Selection-for-Acoustic-Modeling-in-Dysarthric-Speech-Recognition"><a href="#Significance-of-Feature-Selection-for-Acoustic-Modeling-in-Dysarthric-Speech-Recognition" class="headerlink" title="Significance of Feature Selection for Acoustic Modeling in Dysarthric Speech Recognition"></a>Significance of Feature Selection for Acoustic Modeling in Dysarthric Speech Recognition</h1><h2 id="Database-2"><a href="#Database-2" class="headerlink" title="Database"></a>Database</h2><p>​        F01, F03, F04, M01, M02, M03, M05 totaling of 1589 audio files</p>
-<h2 id="Results-3"><a href="#Results-3" class="headerlink" title="Results"></a>Results</h2><p><img src="C:\Users\11913\AppData\Roaming\Typora\typora-user-images\image-20201229191734295.png" alt="image-20201229191734295"></p>
-
+        
+          <p class="article-more-link">
+            <a href="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%861/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -245,102 +104,6 @@
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TORGO/" rel="tag">TORGO</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/14/hello-world/" class="article-date">
-  <time datetime="2020-11-14T08:23:01.920Z" itemprop="datePublished">2020-11-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/14/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/14/hello-world/" data-id="ckj9x2j220004bovrgjyw2ud5" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-HMM" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/08/HMM/" class="article-date">
-  <time datetime="2020-11-08T05:52:11.000Z" itemprop="datePublished">2020-11-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%95%B0%E5%AD%97%E8%AF%AD%E9%9F%B3%E5%A4%84%E7%90%86/">数字语音处理</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/08/HMM/">HMM Basic Problem</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="基本定义"><a href="#基本定义" class="headerlink" title="基本定义"></a>基本定义</h2><p>在语音识别的GMM-HMM模型中我们一般需要定义三个参数，分别为A,B,π，记为$HMM(A,B,\pi) = \lambda$</p>
-<p>其中$A={a_{ij}}$，表示状态i转移到状态j的概率是$a_{ij}$；$B=[b_j(\overline{O}),j=1,2,…,N]$表示状态j和观察序列$\overline{O}$之间的对齐关系，对于高斯混合分布，$b_j(\overline{O})=\sum_{k=1} ^M c_{jk}b_{jk}(\overline{O})$，$c_{jk}$表示的是第j个状态的第k个高斯分布的权重，$b_{jk}(\overline{O})$表示的是状态j的第k个高斯分布与观察序列之间的对齐关系；$\pi=[\pi_1,\pi_2,…,\pi_N], \pi_i = P[q_1=i]$，$\pi_i$表示的是第一个状态为i的概率，$q_i$表示第i个观察序列对应的状态。</p>
-<h2 id="基本问题1"><a href="#基本问题1" class="headerlink" title="基本问题1"></a>基本问题1</h2><p><strong>问题描述：给定模型参数$\lambda$和观察序列$\overline{O}$，求概率$P(\overline{O}|\lambda)$</strong> </p>
-<p>$\overline{q}=q_1q_2q_3….q_t…q_T$</p>
-<p>如果直接计算，我们就需要遍历$\overline{q}$的每一种可能然后求和得到结果，公式如下<br>$$<br>P(\overline{O}|\lambda) = \sum_{all\space\overline{q}} P(\overline{O},\overline{q}|\lambda) = \sum_{all\space\overline{q}}P(\overline{O}|\overline{q},\lambda)P(\overline{q}|\lambda) \ = \sum_{all\space\overline{q}} ([b_{q1}(o_1)b_{q2}(o_2)…b_{qT}(o_T)][\pi_{q1}a_{q1q2}a_{q2q3}…a_{qT-1qT}])<br>$$</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/08/HMM/" data-id="ckj9x2j1m0000bovr4tznffbi" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HMM/" rel="tag">HMM</a></li></ul>
 
     </footer>
   </div>
@@ -359,7 +122,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Disordered-Speech/">Disordered Speech</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%97%E8%AF%AD%E9%9F%B3%E5%A4%84%E7%90%86/">数字语音处理</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Disordered-Speech/">Disordered Speech</a></li></ul>
     </div>
   </div>
 
@@ -369,7 +132,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HMM/" rel="tag">HMM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TORGO/" rel="tag">TORGO</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/TORGO/" rel="tag">TORGO</a></li></ul>
     </div>
   </div>
 
@@ -379,7 +142,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HMM/" style="font-size: 10px;">HMM</a> <a href="/tags/TORGO/" style="font-size: 10px;">TORGO</a>
+      <a href="/tags/TORGO/" style="font-size: 10px;">TORGO</a>
     </div>
   </div>
 
@@ -388,7 +151,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li></ul>
     </div>
   </div>
 
@@ -402,14 +165,6 @@
         
           <li>
             <a href="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%861/">TORGO相关整理1</a>
-          </li>
-        
-          <li>
-            <a href="/2020/11/14/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2020/11/08/HMM/">HMM Basic Problem</a>
           </li>
         
       </ul>
