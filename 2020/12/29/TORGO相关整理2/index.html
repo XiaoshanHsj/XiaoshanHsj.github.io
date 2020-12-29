@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://xiaoshanhsj.github.io/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201229222326876.png">
 <meta property="og:image" content="https://xiaoshanhsj.github.io/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201229222743374.png">
 <meta property="article:published_time" content="2020-12-29T14:52:11.000Z">
-<meta property="article:modified_time" content="2020-12-29T14:32:36.000Z">
+<meta property="article:modified_time" content="2020-12-29T14:37:02.000Z">
 <meta property="article:author" content="Shujie Hu">
 <meta property="article:tag" content="TORGO">
 <meta name="twitter:card" content="summary">
@@ -197,7 +197,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-12-29 22:52:11 / 修改时间：22:32:36" itemprop="dateCreated datePublished" datetime="2020-12-29T22:52:11+08:00">2020-12-29</time>
+              <time title="创建时间：2020-12-29 22:52:11 / 修改时间：22:37:02" itemprop="dateCreated datePublished" datetime="2020-12-29T22:52:11+08:00">2020-12-29</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -221,21 +221,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Staged-Knowledge-Distillation-for-End-to-End-Dysarthric-Speech-Recognition-and-Speech-Attribute-Transcription"><a href="#Staged-Knowledge-Distillation-for-End-to-End-Dysarthric-Speech-Recognition-and-Speech-Attribute-Transcription" class="headerlink" title="Staged Knowledge Distillation for End-to-End Dysarthric Speech Recognition and Speech Attribute Transcription"></a>Staged Knowledge Distillation for End-to-End Dysarthric Speech Recognition and Speech Attribute Transcription</h1><p>​    这篇论文中涉及到了ASR和ASAT(Automatic Speech Attribute Transcription)，下面只整理ASR部分。</p>
-<h2 id="Database"><a href="#Database" class="headerlink" title="Database"></a>Database</h2><p>​    pre-train: 500-hour normal speech from the Librispeech corpus.</p>
-<p>​    retraining: 2 hours of dysarthric speech (2 males and 1 females) and 4 hours of normal speech (4 males) from the TORGO database.</p>
-<p>​    test: another 1 hour of dysarthric speech (2 males and 2 females) from the TORGO database.</p>
-<p>​    data augmentation: other 100-hour normal speech from the Librispeech corpus.</p>
+        <h1 id="Staged-Knowledge-Distillation-for-End-to-End-Dysarthric-Speech-Recognition-and-Speech-Attribute-Transcription"><a href="#Staged-Knowledge-Distillation-for-End-to-End-Dysarthric-Speech-Recognition-and-Speech-Attribute-Transcription" class="headerlink" title="Staged Knowledge Distillation for End-to-End Dysarthric Speech Recognition and Speech Attribute Transcription"></a>Staged Knowledge Distillation for End-to-End Dysarthric Speech Recognition and Speech Attribute Transcription</h1><p>​        这篇论文中涉及到了ASR和ASAT(Automatic Speech Attribute Transcription)，下面只整理ASR部分。</p>
+<h2 id="Database"><a href="#Database" class="headerlink" title="Database"></a>Database</h2><p>pre-train: 500-hour normal speech from the Librispeech corpus.</p>
+<p>retraining: 2 hours of dysarthric speech (2 males and 1 females) and 4 hours of normal speech (4 males) from the TORGO database.</p>
+<p>test: another 1 hour of dysarthric speech (2 males and 2 females) from the TORGO database.</p>
+<p>data augmentation: other 100-hour normal speech from the Librispeech corpus.</p>
 <p><img src="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201229202243436.png" alt="image-20201229202243436"></p>
-<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><p>​    120-dim log Mel-filterbank energy features (40-dim static, Δ, ΔΔ)</p>
-<p>​    each feature was mean- and variance-normalized; every four frames were spliced (three left, one current and zero right)</p>
-<p>​    frequency: 20 Hz – 8,000 Hz</p>
-<p>​    speech perturbation: 0.9, 1.0 and 1.1</p>
-<h2 id="System’s-Architectures"><a href="#System’s-Architectures" class="headerlink" title="System’s Architectures"></a>System’s Architectures</h2><p>​    Speech Transformer (seq2seq attention-based model) + teacher-student learning/knowledge distillation.</p>
-<p>​    the teacher network is trained by optimizing the loss between the ground truth Y and the output softmax of the teacher O<sup>t</sup></p>
-<p>​    the student network is trained to learn from selected labels (Y + the output softmax of O<sup>t</sup>). The loss function is between the selected labels and outputs softmax of the student network O<sup>s</sup>.</p>
-<p>​    To make a full use of limited data resources, the student model is first adapted to the mixture of multiple dysarthric and common speakers, and then adapted for the target dysarthric speakers.</p>
-<p>​    In the first stage (acc ≤ λ), the selected labels : Y + O<sup>t</sup>, In the second stage, the selected labels : Y + O<sup>S1</sup>. </p>
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><p>120-dim log Mel-filterbank energy features (40-dim static, Δ, ΔΔ)</p>
+<p>each feature was mean- and variance-normalized; every four frames were spliced (three left, one current and zero right)</p>
+<p>frequency: 20 Hz – 8,000 Hz</p>
+<p>speech perturbation: 0.9, 1.0 and 1.1</p>
+<h2 id="System’s-Architectures"><a href="#System’s-Architectures" class="headerlink" title="System’s Architectures"></a>System’s Architectures</h2><p>Speech Transformer (seq2seq attention-based model) + teacher-student learning/knowledge distillation.</p>
+<p>the teacher network is trained by optimizing the loss between the ground truth Y and the output softmax of the teacher O<sup>t</sup></p>
+<p>the student network is trained to learn from selected labels (Y + the output softmax of O<sup>t</sup>). The loss function is between the selected labels and outputs softmax of the student network O<sup>s</sup>.</p>
+<p>To make a full use of limited data resources, the student model is first adapted to the mixture of multiple dysarthric and common speakers, and then adapted for the target dysarthric speakers.</p>
+<p>In the first stage (acc ≤ λ), the selected labels : Y + O<sup>t</sup>, In the second stage, the selected labels : Y + O<sup>S1</sup>. </p>
 <table>
 <thead>
 <tr>
@@ -270,11 +270,11 @@
 </tbody></table>
 <h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><p><img src="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201229215033712.png" alt="image-20201229215033712"></p>
 <p><img src="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201229215134600.png" alt="image-20201229215134600"></p>
-<h1 id="END-TO-END-Dysarthric-Speech-Recognition-Using-Multiple-Database"><a href="#END-TO-END-Dysarthric-Speech-Recognition-Using-Multiple-Database" class="headerlink" title="END-TO-END Dysarthric Speech Recognition Using Multiple Database"></a>END-TO-END Dysarthric Speech Recognition Using Multiple Database</h1><p>​    这篇论文只是在训练过程中用到了TORGO数据库作为多任务之一，而在测试过程中并没有对TORGO数据进行测试，因此下面只对paper中用到的方法进行整理记录。</p>
+<h1 id="END-TO-END-Dysarthric-Speech-Recognition-Using-Multiple-Database"><a href="#END-TO-END-Dysarthric-Speech-Recognition-Using-Multiple-Database" class="headerlink" title="END-TO-END Dysarthric Speech Recognition Using Multiple Database"></a>END-TO-END Dysarthric Speech Recognition Using Multiple Database</h1><p>​        这篇论文只是在训练过程中用到了TORGO数据库作为多任务之一，而在测试过程中并没有对TORGO数据进行测试，因此下面只对paper中用到的方法进行整理记录。</p>
 <h2 id="System’s-Architectures-1"><a href="#System’s-Architectures-1" class="headerlink" title="System’s Architectures"></a>System’s Architectures</h2><p>Listen, Attend and Spell Model</p>
 <p><img src="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201229222326876.png" alt="image-20201229222326876"></p>
-<p>​    language model is shared between speakers with or without dysarthria</p>
-<p>​    loss function as follows:</p>
+<p>language model is shared between speakers with or without dysarthria</p>
+<p>loss function as follows:</p>
 <p><img src="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201229222743374.png" alt="image-20201229222743374"></p>
 
     </div>
