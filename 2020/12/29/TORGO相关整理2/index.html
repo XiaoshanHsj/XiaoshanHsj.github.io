@@ -32,8 +32,18 @@
 <meta property="og:image" content="https://xiaoshanhsj.github.io/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201229215134600.png">
 <meta property="og:image" content="https://xiaoshanhsj.github.io/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201229222326876.png">
 <meta property="og:image" content="https://xiaoshanhsj.github.io/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201229222743374.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230160151241.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230163439938.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230165901764.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230170630814.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230175126198.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230193351911.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230194758515.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230195722082.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230201822937.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230201829390.png">
 <meta property="article:published_time" content="2020-12-29T14:52:11.000Z">
-<meta property="article:modified_time" content="2020-12-29T14:37:02.000Z">
+<meta property="article:modified_time" content="2020-12-30T12:37:00.000Z">
 <meta property="article:author" content="Shujie Hu">
 <meta property="article:tag" content="TORGO">
 <meta name="twitter:card" content="summary">
@@ -195,10 +205,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-12-29 22:52:11 / 修改时间：22:37:02" itemprop="dateCreated datePublished" datetime="2020-12-29T22:52:11+08:00">2020-12-29</time>
+              <time title="创建时间：2020-12-29 22:52:11" itemprop="dateCreated datePublished" datetime="2020-12-29T22:52:11+08:00">2020-12-29</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-30 20:37:00" itemprop="dateModified" datetime="2020-12-30T20:37:00+08:00">2020-12-30</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -276,6 +292,85 @@
 <p>language model is shared between speakers with or without dysarthria</p>
 <p>loss function as follows:</p>
 <p><img src="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201229222743374.png" alt="image-20201229222743374"></p>
+<h1 id="Autoencoder-bottleneck-features-with-multi-task-optimisation-for-improved-continuous-dysarthric-speech-recognition"><a href="#Autoencoder-bottleneck-features-with-multi-task-optimisation-for-improved-continuous-dysarthric-speech-recognition" class="headerlink" title="Autoencoder bottleneck features with multi-task optimisation for improved continuous dysarthric speech recognition"></a>Autoencoder bottleneck features with multi-task optimisation for improved continuous dysarthric speech recognition</h1><h2 id="Database-1"><a href="#Database-1" class="headerlink" title="Database"></a>Database</h2><p>on sentence subset of TORGO </p>
+<p>apply an N-fold cross-training setup with the total dataset being divided into five folds (i.e. one fifth of each speaker in every fold)</p>
+<p><img src="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230160151241.png" alt="image-20201230160151241"></p>
+<h2 id="Features-1"><a href="#Features-1" class="headerlink" title="Features"></a>Features</h2><p>Training data was augmented using speed perturbation (using factors 0.9, 1.0 and 1.1)</p>
+<p>39-dim MFCC</p>
+<p>40-dim fMLLR transformed features with splicing of 11 contextual frames</p>
+<h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><h3 id="Autoencoder-based-bottleneck-feature-extractor"><a href="#Autoencoder-based-bottleneck-feature-extractor" class="headerlink" title="Autoencoder-based bottleneck feature extractor"></a>Autoencoder-based bottleneck feature extractor</h3><p>An AE is an unsupervised way to learn a compact data representation. (encoder + decoder)</p>
+<p>Encoder: high dimensional input –&gt; lower dimensional latent variable (AE-BN feature)</p>
+<p>Decoder: reconstruct the input using latent variable</p>
+<p>AE-BN: i) capture as much as the input data characteristics as possible</p>
+<p>​              ii) discard the redundant information</p>
+<h3 id="Acoustic-model-architecture"><a href="#Acoustic-model-architecture" class="headerlink" title="Acoustic model architecture"></a>Acoustic model architecture</h3><p>Light Gated Recurrent Units (LiGRU) model has the capability to exploit large time context and to capture long-term speech modulations.</p>
+<p>Compared with the LSTMs, LiGRUs have a simpler cell design that allows for faster training. The design also avoids the numerical issue of learning long-term dependencies and mitigates the vanishing gradient problem by employing ReLU activation with batch normalisation.</p>
+<h3 id="Multi-task-optimisation"><a href="#Multi-task-optimisation" class="headerlink" title="Multi-task optimisation"></a>Multi-task optimisation</h3><h4 id="Joint-optimisation"><a href="#Joint-optimisation" class="headerlink" title="Joint optimisation"></a>Joint optimisation</h4><p>jointly optimising the AE-BN feature extractor and the speech recogniser where the feature extractor is pretrained on LibriSpeech data and fine-tuned using TORGO dysarthric data.</p>
+<p>In this case, the speech recognition gradient is also backpropagated through the feature extraction module.</p>
+<h4 id="Monophone-regularisation"><a href="#Monophone-regularisation" class="headerlink" title="Monophone regularisation"></a>Monophone regularisation</h4><p>the two tasks are jointly estimated by using a weighted sum cost function between the two predictions from the two softmax classifiers (predicting CD or CI)</p>
+<p>This multi-task learning scheme can be regarded as a technique to regularise the AM</p>
+<h2 id="System’s-Architectures-2"><a href="#System’s-Architectures-2" class="headerlink" title="System’s Architectures"></a>System’s Architectures</h2><p><img src="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230163439938.png" alt="image-20201230163439938"></p>
+<p>AE-BN feature extractor is trained on the 100-hour subset of LibriSpeech corpus</p>
+<p>the loss function of feature extractor is minimising the mean square error between the reconstructed input data and the true input data </p>
+<p>the loss function of classifier: cross-entropy loss between the CD/CI labels and the predictions<br>$$<br>Loss_{ASR} = Loss_{CD} + \lambda_{2} * Loss_{CI} \<br>Loss_{Joint} = \lambda_{1} * Loss_{AE} + Loss_{ASR}<br>$$<br>**Encoder: ** </p>
+<p>four layers: 2 layers convolution layers with filter length 3 and ReLU activation + 2 layers feed-forward ReLU layers with 768 units and 20 units</p>
+<p><strong>Decoder:</strong></p>
+<p>two ReLU layers fed by learned AE-BN features and aims to produce an output matching the 440-dim input</p>
+<p><strong>Acoustic model:</strong></p>
+<p>LiGRU-based, containing five stacked bidirectional LSTM layers and a final softmax classifier.</p>
+<p>dropout (0.15)</p>
+<p><strong>others:</strong></p>
+<table>
+<thead>
+<tr>
+<th>parameter</th>
+<th>feature extractor</th>
+<th>classifier</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>minibatch</td>
+<td>128</td>
+<td>16</td>
+</tr>
+<tr>
+<td>optimisation</td>
+<td>SGD</td>
+<td>RMSProp</td>
+</tr>
+<tr>
+<td>learning rate</td>
+<td>0.5</td>
+<td>0.5</td>
+</tr>
+</tbody></table>
+<p><strong>LM:</strong> 200k vocabulary size LibriSpeech trigram LM</p>
+<h2 id="Results-1"><a href="#Results-1" class="headerlink" title="Results"></a>Results</h2><p><img src="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230165901764.png" alt="image-20201230165901764"><br>$$<br>\lambda_1 = 0.2<br>$$</p>
+<p>WERs for sentence task, isolated word task and the full</p>
+<p><img src="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230170630814.png" alt="image-20201230170630814"></p>
+<h1 id="Exploring-Appropriate-Acoustic-And-Language-Modeling-Choices-For-Continuous-Dysarthric-Speech-Recognition"><a href="#Exploring-Appropriate-Acoustic-And-Language-Modeling-Choices-For-Continuous-Dysarthric-Speech-Recognition" class="headerlink" title="Exploring Appropriate Acoustic And Language Modeling Choices For Continuous Dysarthric Speech Recognition"></a>Exploring Appropriate Acoustic And Language Modeling Choices For Continuous Dysarthric Speech Recognition</h1><h2 id="Challenges-of-using-dysarthric-speech-corpora-for-continuous-speech-recognition"><a href="#Challenges-of-using-dysarthric-speech-corpora-for-continuous-speech-recognition" class="headerlink" title="Challenges of using dysarthric speech corpora for continuous speech recognition"></a>Challenges of using dysarthric speech corpora for continuous speech recognition</h2><p>There is a large overlap between ang given speaker’s utterances and those seen in their training set as all speakers have had the same prompts and contributed very similar utterances.</p>
+<p><img src="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230175126198.png" alt="image-20201230175126198"></p>
+<p>So any LM trained on any speaker’s corresponding training part of the dataset will be highly tuned to the test set.</p>
+<h2 id="Language-Modelling-amp-Results"><a href="#Language-Modelling-amp-Results" class="headerlink" title="Language Modelling &amp; Results"></a>Language Modelling &amp; Results</h2><p><strong>AMs:</strong></p>
+<p>GMM-HMM: triphone model with speaker adapted transformation</p>
+<p>DNN-HMM: following [Automatic Speech Recognition with Deep Neural Networks for Impaired Speech] (第一篇)</p>
+<p>Leave-one-speaker-out cross validation</p>
+<h3 id="TORGO-LM"><a href="#TORGO-LM" class="headerlink" title="TORGO LM"></a>TORGO LM</h3><p>a trigram LM built on prompts of the training stage data in TROGO.</p>
+<p><img src="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230193351911.png" alt="image-20201230193351911"></p>
+<h3 id="Task-specific-TORGO-LMs"><a href="#Task-specific-TORGO-LMs" class="headerlink" title="Task-specific TORGO LMs"></a>Task-specific TORGO LMs</h3><p>isolated word: unigram LM, 615 unique words</p>
+<p>sentence: trigram model, 313 to 354 sentence prompts, applying Witten-Bell discounting</p>
+<p><img src="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230194758515.png" alt="image-20201230194758515"></p>
+<p><img src="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230195722082.png" alt="image-20201230195722082"></p>
+<h3 id="Out-of-domain-LibriSpeech-LMs"><a href="#Out-of-domain-LibriSpeech-LMs" class="headerlink" title="Out-of-domain LibriSpeech LMs"></a>Out-of-domain LibriSpeech LMs</h3><p>build LibriSpeech unigram LMs over a range of vocabulary sizes: {2k, 5k, 10k, 15k, 20k, 25k, 30k, 35k, 40k, 45k, 50k, 100k, 150k, 200k}</p>
+<p>trigram LMs is built by pruning the pre-trained official 3-gram LibriSpeech LM</p>
+<p>The OOV words are converted to &lt;UNK&gt; tag in the unigram while N-grams containing OOV words are removed, then the model is re-normalized.</p>
+<p>To achieve comparable OOV rates for the smaller vocabulary sized LM for both the word and the sentence tasks, vocabulary sizes starting from 0.1k are introduced for the sentence task.</p>
+<h4 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h4><p>$$<br>x = \frac{i-c}{i} = 1 - \frac{c}{i}<br>$$</p>
+<p>where x is recognition confusion, c is the number of correctly recognized words, and i denotes the number of in-vocabulary words.</p>
+<p><img src="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230201822937.png" alt="image-20201230201822937"></p>
+<p>from Fig. 2 (d) , the greater the severity of dysarthria, the less compensate is made by the decreasing OOV rate.</p>
+<p><img src="/2020/12/29/TORGO%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%862/image-20201230201829390.png" alt="image-20201230201829390"></p>
+<p>compared to Table 2</p>
 
     </div>
 
@@ -373,7 +468,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Staged-Knowledge-Distillation-for-End-to-End-Dysarthric-Speech-Recognition-and-Speech-Attribute-Transcription"><span class="nav-number">1.</span> <span class="nav-text">Staged Knowledge Distillation for End-to-End Dysarthric Speech Recognition and Speech Attribute Transcription</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Database"><span class="nav-number">1.1.</span> <span class="nav-text">Database</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Features"><span class="nav-number">1.2.</span> <span class="nav-text">Features</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#System%E2%80%99s-Architectures"><span class="nav-number">1.3.</span> <span class="nav-text">System’s Architectures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Results"><span class="nav-number">1.4.</span> <span class="nav-text">Results</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#END-TO-END-Dysarthric-Speech-Recognition-Using-Multiple-Database"><span class="nav-number">2.</span> <span class="nav-text">END-TO-END Dysarthric Speech Recognition Using Multiple Database</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#System%E2%80%99s-Architectures-1"><span class="nav-number">2.1.</span> <span class="nav-text">System’s Architectures</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Staged-Knowledge-Distillation-for-End-to-End-Dysarthric-Speech-Recognition-and-Speech-Attribute-Transcription"><span class="nav-number">1.</span> <span class="nav-text">Staged Knowledge Distillation for End-to-End Dysarthric Speech Recognition and Speech Attribute Transcription</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Database"><span class="nav-number">1.1.</span> <span class="nav-text">Database</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Features"><span class="nav-number">1.2.</span> <span class="nav-text">Features</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#System%E2%80%99s-Architectures"><span class="nav-number">1.3.</span> <span class="nav-text">System’s Architectures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Results"><span class="nav-number">1.4.</span> <span class="nav-text">Results</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#END-TO-END-Dysarthric-Speech-Recognition-Using-Multiple-Database"><span class="nav-number">2.</span> <span class="nav-text">END-TO-END Dysarthric Speech Recognition Using Multiple Database</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#System%E2%80%99s-Architectures-1"><span class="nav-number">2.1.</span> <span class="nav-text">System’s Architectures</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Autoencoder-bottleneck-features-with-multi-task-optimisation-for-improved-continuous-dysarthric-speech-recognition"><span class="nav-number">3.</span> <span class="nav-text">Autoencoder bottleneck features with multi-task optimisation for improved continuous dysarthric speech recognition</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Database-1"><span class="nav-number">3.1.</span> <span class="nav-text">Database</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Features-1"><span class="nav-number">3.2.</span> <span class="nav-text">Features</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Background"><span class="nav-number">3.3.</span> <span class="nav-text">Background</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Autoencoder-based-bottleneck-feature-extractor"><span class="nav-number">3.3.1.</span> <span class="nav-text">Autoencoder-based bottleneck feature extractor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Acoustic-model-architecture"><span class="nav-number">3.3.2.</span> <span class="nav-text">Acoustic model architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-task-optimisation"><span class="nav-number">3.3.3.</span> <span class="nav-text">Multi-task optimisation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Joint-optimisation"><span class="nav-number">3.3.3.1.</span> <span class="nav-text">Joint optimisation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Monophone-regularisation"><span class="nav-number">3.3.3.2.</span> <span class="nav-text">Monophone regularisation</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#System%E2%80%99s-Architectures-2"><span class="nav-number">3.4.</span> <span class="nav-text">System’s Architectures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Results-1"><span class="nav-number">3.5.</span> <span class="nav-text">Results</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exploring-Appropriate-Acoustic-And-Language-Modeling-Choices-For-Continuous-Dysarthric-Speech-Recognition"><span class="nav-number">4.</span> <span class="nav-text">Exploring Appropriate Acoustic And Language Modeling Choices For Continuous Dysarthric Speech Recognition</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Challenges-of-using-dysarthric-speech-corpora-for-continuous-speech-recognition"><span class="nav-number">4.1.</span> <span class="nav-text">Challenges of using dysarthric speech corpora for continuous speech recognition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Language-Modelling-amp-Results"><span class="nav-number">4.2.</span> <span class="nav-text">Language Modelling &amp; Results</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TORGO-LM"><span class="nav-number">4.2.1.</span> <span class="nav-text">TORGO LM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Task-specific-TORGO-LMs"><span class="nav-number">4.2.2.</span> <span class="nav-text">Task-specific TORGO LMs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Out-of-domain-LibriSpeech-LMs"><span class="nav-number">4.2.3.</span> <span class="nav-text">Out-of-domain LibriSpeech LMs</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Analysis"><span class="nav-number">4.2.3.1.</span> <span class="nav-text">Analysis</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
