@@ -178,7 +178,7 @@ body {
   background: var(--body-bg-color);
   color: var(--text-color);
   font-family: 'PT Sans', "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 0.7em;
+  font-size: 0.5em;
   line-height: 2;
 }
 @media (max-width: 991px) {
@@ -1178,7 +1178,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #2b1885;
+  background: #3c17c7;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
