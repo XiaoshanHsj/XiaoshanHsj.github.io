@@ -20,22 +20,24 @@
     var CONFIG = {"hostname":"xiaoshanhsj.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Reverberation robust AM using i-vectors with TDNN论文阅读记录">
+  <meta name="description" content="Batch Normalization批标准化相关学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Reverberation robust AM using i-vectors with TDNN论文阅读记录">
-<meta property="og:url" content="https://xiaoshanhsj.github.io/2021/01/06/Reverberation%20robust%20AM%20using%20i-vectors%20with%20TDNN/index.html">
+<meta property="og:title" content="Batch Normalization批标准化">
+<meta property="og:url" content="https://xiaoshanhsj.github.io/2021/01/08/Batch%20Normalization%E6%89%B9%E6%A0%87%E5%87%86%E5%8C%96/index.html">
 <meta property="og:site_name" content="XiaoshanHsj">
-<meta property="og:description" content="Reverberation robust AM using i-vectors with TDNN论文阅读记录">
+<meta property="og:description" content="Batch Normalization批标准化相关学习">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/06/Reverberation%20robust%20AM%20using%20i-vectors%20with%20TDNN/Users/11913/AppData/Roaming/Typora/typora-user-images/image-20210106155349674.png">
-<meta property="article:published_time" content="2021-01-06T06:32:11.000Z">
-<meta property="article:modified_time" content="2021-01-07T13:09:24.000Z">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/08/Batch%20Normalization%E6%89%B9%E6%A0%87%E5%87%86%E5%8C%96/1192699-20180407143109455-1460017374.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/08/Batch%20Normalization%E6%89%B9%E6%A0%87%E5%87%86%E5%8C%96/1192699-20180407142351924-124461667.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/08/Batch%20Normalization%E6%89%B9%E6%A0%87%E5%87%86%E5%8C%96/1192699-20180405213955224-1791925244.png">
+<meta property="article:published_time" content="2021-01-08T14:52:11.000Z">
+<meta property="article:modified_time" content="2021-01-09T12:47:30.000Z">
 <meta property="article:author" content="Shujie Hu">
-<meta property="article:tag" content="i-vectors TDNN">
+<meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiaoshanhsj.github.io/2021/01/06/Reverberation%20robust%20AM%20using%20i-vectors%20with%20TDNN/Users/11913/AppData/Roaming/Typora/typora-user-images/image-20210106155349674.png">
+<meta name="twitter:image" content="https://xiaoshanhsj.github.io/2021/01/08/Batch%20Normalization%E6%89%B9%E6%A0%87%E5%87%86%E5%8C%96/1192699-20180407143109455-1460017374.png">
 
-<link rel="canonical" href="https://xiaoshanhsj.github.io/2021/01/06/Reverberation%20robust%20AM%20using%20i-vectors%20with%20TDNN/">
+<link rel="canonical" href="https://xiaoshanhsj.github.io/2021/01/08/Batch%20Normalization%E6%89%B9%E6%A0%87%E5%87%86%E5%8C%96/">
 
 
 <script id="page-configurations">
@@ -48,7 +50,7 @@
   };
 </script>
 
-  <title>Reverberation robust AM using i-vectors with TDNN论文阅读记录 | XiaoshanHsj</title>
+  <title>Batch Normalization批标准化 | XiaoshanHsj</title>
   
 
 
@@ -173,7 +175,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://xiaoshanhsj.github.io/2021/01/06/Reverberation%20robust%20AM%20using%20i-vectors%20with%20TDNN/">
+    <link itemprop="mainEntityOfPage" href="https://xiaoshanhsj.github.io/2021/01/08/Batch%20Normalization%E6%89%B9%E6%A0%87%E5%87%86%E5%8C%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -186,7 +188,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Reverberation robust AM using i-vectors with TDNN论文阅读记录
+          Batch Normalization批标准化
         </h1>
 
         <div class="post-meta">
@@ -196,14 +198,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-01-06 14:32:11" itemprop="dateCreated datePublished" datetime="2021-01-06T14:32:11+08:00">2021-01-06</time>
+              <time title="创建时间：2021-01-08 22:52:11" itemprop="dateCreated datePublished" datetime="2021-01-08T22:52:11+08:00">2021-01-08</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-07 21:09:24" itemprop="dateModified" datetime="2021-01-07T21:09:24+08:00">2021-01-07</time>
+                <time title="修改时间：2021-01-09 20:47:30" itemprop="dateModified" datetime="2021-01-09T20:47:30+08:00">2021-01-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -211,12 +213,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%BA%E6%96%87%E6%95%B4%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">论文整理</span></a>
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
                 </span>
             </span>
 
           
-            <div class="post-description">Reverberation robust AM using i-vectors with TDNN论文阅读记录</div>
+            <div class="post-description">Batch Normalization批标准化相关学习</div>
 
         </div>
       </header>
@@ -227,28 +229,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Reverberant environments指的是声音信号存在反射的场景，因此麦克风接受的信号会来自不同的方向，并且有各自的时延。为了解决直接的语音信号和这些反射源之间的干扰，识别器必须能够处理long-term的声学上下文。</p>
-<p>RNNs这种使用一个在所有历史序列上的动态改变的上下文窗口的方法被证明是很合适的，但是它无法像feed forward神经网络这样并行化。</p>
-<p>这篇paper使用的是TDNN，一种能够有效建模long term时序上下文的feed forward神经网络。通过sub-sampling技术，TDNN的训练时间可以和标准的feed-forward DNNs相媲美。</p>
-<p>iVectors能够获得说话人和环境特有的信息，用在NN中快速自适应是十分有效的。</p>
-<h2 id="Relevant-Prior-Work"><a href="#Relevant-Prior-Work" class="headerlink" title="Relevant Prior Work"></a>Relevant Prior Work</h2><p>Reverberant Speech由直接声源(direct-path response)，早反射和迟反射三部分组成，其中早反射的延时在50ms左右，迟反射在200到1000ms左右。早反射可以用DNN加上一个较短的时间上下文有效处理，但是对于迟反射无能为力，但是TDNNs可以。</p>
-<h2 id="Neural-network-architecture"><a href="#Neural-network-architecture" class="headerlink" title="Neural network architecture"></a>Neural network architecture</h2><p>TDNN的上下文是有小到大的，因此越高的层越有能力处理更长的时间关系。当然如果不使用加速技术，TDNN的训练时间会比DNN长很久。</p>
-<p>sub-sampling可以用来减少隐层激活节点的数量，但是需要保证输入层的所有时间步信息都被使用了。</p>
-<p><img src="/2021/01/06/Reverberation%20robust%20AM%20using%20i-vectors%20with%20TDNN/Users\11913\AppData\Roaming\Typora\typora-user-images\image-20210106155349674.png" alt="image-20210106155349674"></p>
-<p>上图展示了计算t时刻输出的TDNN，with and without sub-sampling。使用sub-sampling可以节省约5倍的时间。同时我们额外需要的hyper-parameters就是这些帧偏移的集合，上图就是({-2,-1,0,1,2},{-1,2},{-3,3},{-7,2})</p>
-<p>使用p-norm non-linearity，一组大小为10的2-norm正规化。</p>
-<h3 id="Input-Features"><a href="#Input-Features" class="headerlink" title="Input Features"></a>Input Features</h3><p>40 MFCCs without cepstral truncation，使用不对称的加窗</p>
-<p>100-dim iVectors every time frame</p>
-<h3 id="Training-recipe"><a href="#Training-recipe" class="headerlink" title="Training recipe"></a>Training recipe</h3><p>使用贪心的分层有监督训练，先决条件的SGD，一个指数下降的学习率方案和mixing-up。</p>
-<h4 id="Modified-sMBR-sequence-training"><a href="#Modified-sMBR-sequence-training" class="headerlink" title="Modified sMBR sequence training"></a>Modified sMBR sequence training</h4><p>在DNN上的序列化训练是以状态级别的MPE最小因素错误为准则的，叫做sMBR。在sMBR的目标函数中，insertion error是不会被惩罚的。在标准的sMBR训练中，如果reference是silence，这一帧的错误就会被设置成0，这就是说这些帧被特殊对待了。在修改的sMBR训练方法中，我们把silence和其他帧一样对待，即如果把一个非silence的音素插到一个silence的区域也会被惩罚，除了我们把所有的silence用一个pdf来计算帧错误。</p>
-<h2 id="iVector-Extraction"><a href="#iVector-Extraction" class="headerlink" title="iVector Extraction"></a>iVector Extraction</h2><p>我们从非分段的噪音语音记录中估计iVectors，然后使用这些iVectors来作为神经网络的输入。</p>
-<p>MFCC的输入没用使用cepstral mean正规化，这是为了让iVectors应用任何说话人数据的mean offset的信息，这样网络自己就能够做任何需要的特征正规化。为了能够让说话人mean-offset的信息能够编码进iVector，我们就需要在没有做mean正规化的特征上面进行估计iVector。但是用于估计的Gaussian后验是用了一个6s的固定窗口均值正规化了的。</p>
-<h3 id="iVector-Extraction-during-training"><a href="#iVector-Extraction-during-training" class="headerlink" title="iVector Extraction during training"></a>iVector Extraction during training</h3><p>iVector estimator从100小时的训练数据子集训练得到：包括用于UBM的高斯混合模型训练和T matrix的估计。之后用这个estimator对所有训练数据的iVectors进行估计。为了保证iVectors足够的变量，我们只使用当前帧之前的帧，同时我们对每两句话的history进行重排，这样就能保证即使只有一些说话人，训练数据的变化性也足够。</p>
-<h3 id="iVector-extraction-during-decoding"><a href="#iVector-extraction-during-decoding" class="headerlink" title="iVector extraction during decoding"></a>iVector extraction during decoding</h3><p>解码时线上提取不是强制的，iVectors可以通过线下的方式获得（对很大部分说话人数据的公平累加，至少60s）。</p>
-<p>当把iVector应用到和训练数据不相似的数据时 ，iVector extraction的先验就十分重要了。通常我们会对pre-frame的后验缩放0.1，等价于对先验放大10倍。</p>
-<h4 id="iVectors-from-reliable-speech-segments"><a href="#iVectors-from-reliable-speech-segments" class="headerlink" title="iVectors from reliable speech segments"></a>iVectors from reliable speech segments</h4><p>根据经验，把silence去除对估计iVector是非常有帮助的。</p>
-<p>为了检测含有语音的区域，我们首先用从全部的区域得到的iVector进行第一轮声音数据解码，这样得到的数据我们称之为Reliable speech segments。Audio segments对应到words的置信度为1.0。</p>
-<p>第二轮解码使用从这些reliable speech segments里得到的iVector进行解码。</p>
+        <p>机器学习领域有个很重要的假设：IID独立同分布假设，就是假设训练数据和测试数据是满足相同分布的，这是通过训练数据获得的模型在测试集获得好的效果的一个基本保障。</p>
+<p>BatchNorm就是在深度神经网络训练过程中使得每一层神经网络的输入保持相同分布的</p>
+<h2 id="“Internal-Covariate-Shift”问题"><a href="#“Internal-Covariate-Shift”问题" class="headerlink" title="“Internal Covariate Shift”问题"></a>“Internal Covariate Shift”问题</h2><p>covariate shift的概念：如果ML系统实例集合&lt;X,Y&gt;中的输入值X的分布经常变化，这不符合IID假设，网络模型很难稳定地学习规律。</p>
+<p>对于深度学习这种包含很多隐层的网络结构，在训练过程中，因为各层参数不停在变化，所以每个隐层都会面临covariate shift的问题，也就是在训练过程中，隐层的输入分布经常变化，这就是所谓的“Internal Covariate Shift”，Internal指的是深层网络的隐层。</p>
+<p>能不能让每个隐层节点的激活输入分布固定下来呢？</p>
+<p>白化(Whiten)，就是对输入数据分布变换到均值为0，方差为1的标准正态分布。</p>
+<p>对深度神经网络的输入做“白化”能加快收敛，那么如果对每一个隐层都做“白化”呢？因为每一个隐层都是下一层的输入</p>
+<p>这就是启发BN产生的最初想法，而BN也确实是这么做的，可以理解为对深层神经网络每个隐层神经元的激活值做简化版的“白化”操作。</p>
+<h2 id="BatchNorm的本质思想"><a href="#BatchNorm的本质思想" class="headerlink" title="BatchNorm的本质思想"></a>BatchNorm的本质思想</h2><p>BN的基本思想：因为深层神经网络在做非线性变换前的激活输入值z(=Wx+b)随着网络深度的加深或者在训练过程中，其分布逐渐发生偏移或者变动（W与x越接近，Wx+b的值就越大）。之所以训练收敛慢，一般是整体分布逐渐往非线性函数的取值区间的上下限两端靠近（对于sigmoid函数来说，意味着z是大的负数或者正数），所以这就导致反向传播时低层神经网络的梯度消失。</p>
+<p>而BN就是通过一定的规范化手段，对于每个隐层神经元，把逐渐向非线性函数取值区间极限饱和区靠拢的输入分布强制拉回到均值为0方差为1的标准正态分布，使得非线性变换函数的输入值落入对输入比较敏感的区域，以避免梯度消失问题。</p>
+<p>对于标准正态分布，有95%的值落入在[-2,2]的区间内，也就是说如果激活输入值的分布是标准正态分布，那么有95%的z会落入到[-2,2]之间，而这对sigmoid激活函数来说，其导数就落在了比较大的区域内。</p>
+<p><img src="/2021/01/08/Batch%20Normalization%E6%89%B9%E6%A0%87%E5%87%86%E5%8C%96/1192699-20180407143109455-1460017374.png" alt="img"></p>
+<p><img src="/2021/01/08/Batch%20Normalization%E6%89%B9%E6%A0%87%E5%87%86%E5%8C%96/1192699-20180407142351924-124461667.png" alt="img"></p>
+<p>如果我们的激活输入值z的分布是均值为-6，方差为1的正态分布，那么95%的z值会落在[-8,-4]上，此时sigmoid的导数就会很接近0，意味着梯度变化很小甚至消失。</p>
+<p>但是这样做就会让z基本落在非线性函数的线性区内；为了保证非线性的获得，对变换后的满足标准正态分布的z又进行了scale加上shift操作，z’=scale*z+shift。这样每个神经元增加了两个参数scale和shift，这两个参数通过训练学习到的，这等价于非线性函数的值从正中心周围的线性区往非线性区动了动。</p>
+<h2 id="训练阶段如何做BatchNorm"><a href="#训练阶段如何做BatchNorm" class="headerlink" title="训练阶段如何做BatchNorm"></a>训练阶段如何做BatchNorm</h2><p><img src="/2021/01/08/Batch%20Normalization%E6%89%B9%E6%A0%87%E5%87%86%E5%8C%96/1192699-20180405213955224-1791925244.png" alt="img"></p>
+<p>对于Mini-Batch SGD来说，一次训练过程中包含m个训练实例，其具体BN操作就是对于隐层内每个神经元的激活值进行如下变换：<br>$$<br>\hat{z}^{(k)}=\frac{x^{(k)}-E[x^{(k)}]}{\sqrt{Var[x^{(k)}]}}<br>\ y^{(k)} = \gamma^{(k)}\hat{z}^{(k)}+\beta^{(k)}<br>$$</p>
+<h2 id="BatchNorm的推理-Inference-过程"><a href="#BatchNorm的推理-Inference-过程" class="headerlink" title="BatchNorm的推理(Inference)过程"></a>BatchNorm的推理(Inference)过程</h2><p>在推理过程中只有一个实例，因此需要用全局的均值和方差来代替mini-batch的均值和方差。</p>
+<p>而全局的统计量可以从每次的mini-batch的统计量中计算出来，即<br>$$<br>E[x]\leftarrow{E_B[\mu_B]}<br>\<br>Var[x]\leftarrow{\frac{m}{m-1}E_B[\sigma_B^2]}<br>$$<br>其中m是mini-batch的大小。在推理过程中进行BN采取如下方式：<br>$$<br>y=\gamma\frac{1}{\sqrt{Var[x]+\epsilon}}·x+(\beta-\gamma\frac{E[x]}{\sqrt{Var[x]+\epsilon}})<br>$$<br>其中两个分式都是固定值，可以事先计算好保存起来</p>
+<h2 id="BatchNorm的好处"><a href="#BatchNorm的好处" class="headerlink" title="BatchNorm的好处"></a>BatchNorm的好处</h2><ol>
+<li>极大提升了训练速度，收敛过程大大加快</li>
+<li>增加分类效果，类似于dropout的一种防止过拟合的正则化表达方式</li>
+<li>调参过程简单，对于初始化要求没那么高，而且可以使用大的学习率。</li>
+</ol>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1]. <a target="_blank" rel="noopener" href="https://www.cnblogs.com/guoyaohua/p/8724433.html">https://www.cnblogs.com/guoyaohua/p/8724433.html</a></p>
 
     </div>
 
@@ -264,7 +269,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xiaoshanhsj.github.io/2021/01/06/Reverberation%20robust%20AM%20using%20i-vectors%20with%20TDNN/" title="Reverberation robust AM using i-vectors with TDNN论文阅读记录">https://xiaoshanhsj.github.io/2021/01/06/Reverberation robust AM using i-vectors with TDNN/</a>
+    <a href="https://xiaoshanhsj.github.io/2021/01/08/Batch%20Normalization%E6%89%B9%E6%A0%87%E5%87%86%E5%8C%96/" title="Batch Normalization批标准化">https://xiaoshanhsj.github.io/2021/01/08/Batch Normalization批标准化/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -275,7 +280,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/i-vectors-TDNN/" rel="tag"># i-vectors TDNN</a>
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
           </div>
 
         
@@ -284,12 +289,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/01/05/%E4%B8%89%E9%9F%B3%E5%AD%90%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/" rel="prev" title="三音子模型训练">
-      <i class="fa fa-chevron-left"></i> 三音子模型训练
+    <a href="/2021/01/08/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0(ReLU,Swish,Maxout)/" rel="prev" title="激活函数(ReLU,Swish,Maxout)">
+      <i class="fa fa-chevron-left"></i> 激活函数(ReLU,Swish,Maxout)
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/01/07/Improving%20DNN%20AM%20Using%20Generalized%20Maxout%20Networks/" rel="next" title="Improving DNN AM Using Generalized Maxout Networks论文记录">
-      Improving DNN AM Using Generalized Maxout Networks论文记录 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/01/09/decoding%20in%20Kaldi/" rel="next" title="decoding in kaldi">
+      decoding in kaldi <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -349,7 +354,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Relevant-Prior-Work"><span class="nav-number">2.</span> <span class="nav-text">Relevant Prior Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Neural-network-architecture"><span class="nav-number">3.</span> <span class="nav-text">Neural network architecture</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-Features"><span class="nav-number">3.1.</span> <span class="nav-text">Input Features</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-recipe"><span class="nav-number">3.2.</span> <span class="nav-text">Training recipe</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Modified-sMBR-sequence-training"><span class="nav-number">3.2.1.</span> <span class="nav-text">Modified sMBR sequence training</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iVector-Extraction"><span class="nav-number">4.</span> <span class="nav-text">iVector Extraction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iVector-Extraction-during-training"><span class="nav-number">4.1.</span> <span class="nav-text">iVector Extraction during training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iVector-extraction-during-decoding"><span class="nav-number">4.2.</span> <span class="nav-text">iVector extraction during decoding</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#iVectors-from-reliable-speech-segments"><span class="nav-number">4.2.1.</span> <span class="nav-text">iVectors from reliable speech segments</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%80%9CInternal-Covariate-Shift%E2%80%9D%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">“Internal Covariate Shift”问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BatchNorm%E7%9A%84%E6%9C%AC%E8%B4%A8%E6%80%9D%E6%83%B3"><span class="nav-number">2.</span> <span class="nav-text">BatchNorm的本质思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E9%98%B6%E6%AE%B5%E5%A6%82%E4%BD%95%E5%81%9ABatchNorm"><span class="nav-number">3.</span> <span class="nav-text">训练阶段如何做BatchNorm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BatchNorm%E7%9A%84%E6%8E%A8%E7%90%86-Inference-%E8%BF%87%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">BatchNorm的推理(Inference)过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BatchNorm%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="nav-number">5.</span> <span class="nav-text">BatchNorm的好处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">6.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

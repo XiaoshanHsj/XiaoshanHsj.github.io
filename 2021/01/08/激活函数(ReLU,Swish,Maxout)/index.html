@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xiaoshanhsj.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="激活函数(ReLU,Swish,Maxout)学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="激活函数(ReLU,Swish,Maxout)">
+<meta property="og:url" content="https://xiaoshanhsj.github.io/2021/01/08/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0(ReLU,Swish,Maxout)/index.html">
+<meta property="og:site_name" content="XiaoshanHsj">
+<meta property="og:description" content="激活函数(ReLU,Swish,Maxout)学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/08/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0(ReLU,Swish,Maxout)/606386-20180502160705206-923153087.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/08/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0(ReLU,Swish,Maxout)/606386-20171009171758918-776097243.jpg">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/08/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0(ReLU,Swish,Maxout)/606386-20171009171740277-913264806.png">
+<meta property="article:published_time" content="2021-01-08T08:52:11.000Z">
+<meta property="article:modified_time" content="2021-01-09T12:47:00.000Z">
+<meta property="article:author" content="Shujie Hu">
+<meta property="article:tag" content="激活函数">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoshanhsj.github.io/2021/01/08/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0(ReLU,Swish,Maxout)/606386-20180502160705206-923153087.png">
+
+<link rel="canonical" href="https://xiaoshanhsj.github.io/2021/01/08/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0(ReLU,Swish,Maxout)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>激活函数(ReLU,Swish,Maxout) | XiaoshanHsj</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">XiaoshanHsj</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">脚踏实地，仰望星空</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">12</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaoshanhsj.github.io/2021/01/08/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0(ReLU,Swish,Maxout)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Shujie Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XiaoshanHsj">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          激活函数(ReLU,Swish,Maxout)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-08 16:52:11" itemprop="dateCreated datePublished" datetime="2021-01-08T16:52:11+08:00">2021-01-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-09 20:47:00" itemprop="dateModified" datetime="2021-01-09T20:47:00+08:00">2021-01-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">激活函数(ReLU,Swish,Maxout)学习</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h2><p>ReLU(Rectified Linear Unit，修正线性单元)<br>$$<br>f(x)=\left{\begin{aligned}0,\ \ x≤0\x,\ \ x&gt;0\end{aligned}\right.<br>$$<br>ReLU公式近似推导：<br>$$<br>\begin{aligned}f(x)=\sum_{i=1}^{inf}\sigma(x-i+0.5)\ \ \ \ (stepped\ sigmoid)<br>\ ≈log(1+e^x)\ \ \ \ (softplus\ function)<br>\ ≈max(0, x+N(0,1))\ \ \ \ (ReL\ function)<br>\end{aligned}<br>$$</p>
+<p>$$<br>其中\sigma(z)=\frac{1}{1+e^{-z}}\ \ \ \ \ \ \ \ \ \ \ \ (sigmoid)<br>$$</p>
+<p><strong>softplus</strong>函数与ReLU函数接近，但比较平滑，同ReLU一样是单边抑制，有宽广的接受域(0, +inf)。</p>
+<p><img src="/2021/01/08/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0(ReLU,Swish,Maxout)/606386-20180502160705206-923153087.png" alt="softplus"></p>
+<p><strong>Noisy ReLU</strong>：ReLU可以被扩展为包括高斯噪音：<br>$$<br>f(x)=max(0, x+Y),Y∼N(0,\sigma(x))<br>$$<br><strong>ReLU上界设置：</strong><br>$$<br>f(x)=min(6,max(0,x))<br>$$<br>ReLU函数的单侧抑制、相对宽阔的兴奋边界和稀疏激活性使得它的表现很不错。</p>
+<p><strong>ReLU函数的缺点：</strong></p>
+<ol>
+<li>ReLU强制的稀疏处理会减少模型的有效容量</li>
+<li>ReLU在x&lt;0时梯度为0，这样就导致负的梯度在这个ReLU被置零，这个神经元有可能再也不会被任何数据激活，称为神经元“坏死”.</li>
+<li>没有负值</li>
+</ol>
+<h3 id="关于稀疏性的观点："><a href="#关于稀疏性的观点：" class="headerlink" title="关于稀疏性的观点："></a>关于稀疏性的观点：</h3><h4 id="信息解离"><a href="#信息解离" class="headerlink" title="信息解离"></a>信息解离</h4><p>深度学习的一个明确目标是从数据变量中解离出关键因子。原始数据（以自然数据为主）中通常缠绕着高度密集的特征。原因是这些特征向量是相互关联的。如果能够解开特征间缠绕的复杂关系，转换为稀疏特征，那么特征就有了鲁棒性（去掉了无关噪音）。</p>
+<h4 id="线性可分性"><a href="#线性可分性" class="headerlink" title="线性可分性"></a>线性可分性</h4><p>稀疏特征有更大可能线性可分，或者对非线性映射机制有更小的依赖</p>
+<h4 id="稠密分布但是稀疏"><a href="#稠密分布但是稀疏" class="headerlink" title="稠密分布但是稀疏"></a>稠密分布但是稀疏</h4><p>稠密缠绕分布着的特征是信息最富集的特征，从潜在性角度，往往比局部少数点携带的特征成倍的有效。</p>
+<p>而稀疏特征，正是从稠密缠绕区解离出来的，潜在价值巨大。</p>
+<h3 id="ReLU变种"><a href="#ReLU变种" class="headerlink" title="ReLU变种"></a>ReLU变种</h3><h4 id="Leaky-ReLU"><a href="#Leaky-ReLU" class="headerlink" title="Leaky ReLU"></a>Leaky ReLU</h4><p>$$<br>f(x)=max(\alpha{x},x)<br>$$</p>
+<p>其中α非常小，这样可以避免在x&lt;0时，不能够学习的情况。</p>
+<p>将α作为可以学习的参数，成为Parametric Rectifier（PReLU）</p>
+<p>将α从高斯分布中随机产生时称为Random Rectifier（RReLU）</p>
+<p>当α固定为0.01时称为Leaky ReLU</p>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>不会过拟合</li>
+<li>计算简单有效</li>
+<li>比sigmoid/tanh收敛快</li>
+</ul>
+<h4 id="指数线性单元ELU"><a href="#指数线性单元ELU" class="headerlink" title="指数线性单元ELU"></a>指数线性单元ELU</h4><p>$$<br>f(x)=\left{\begin{aligned}\alpha(e^x-1), \ \ x≤0<br>\ x, \ \ \ x &gt; 0 \end{aligned}\right.<br>$$</p>
+<p>$$<br>f’(x)=\left{\begin{aligned}f(x)+\alpha, \ \ x≤0<br>\ 1, \ \ \ x &gt; 0 \end{aligned}\right.<br>$$</p>
+<p>有较高的噪声鲁棒性，同时能够使得神经元的平均激活均值趋近0；但是计算量较大</p>
+<h4 id="SELU"><a href="#SELU" class="headerlink" title="SELU"></a>SELU</h4><p>$$<br>f(x)=\lambda\left{\begin{aligned}\alpha(e^x-1), \ \ x≤0<br>\ x, \ \ \ x &gt; 0 \end{aligned}\right.<br>$$</p>
+<h2 id="Swish"><a href="#Swish" class="headerlink" title="Swish"></a>Swish</h2><p>$$<br>f(x)=x·sigmoid(βx)<br>$$</p>
+<p>β是个常数或可训练的参数，Swish具备无上界有下届、平滑、非单调的特性</p>
+<p>当β=0时，Swish变成线性函数<br>$$<br>f(x)=\frac{x}{2}<br>$$<br>当β趋近无穷时，x&gt;0，sigmoid取1，x&lt;0，sigmoid取0，此时Swish变成ReLU<br>$$<br>f(x)=max(0,x)<br>$$<br>所以Swish函数可以看作是介于线性函数与ReLU函数之间的平滑函数</p>
+<h3 id="GELU"><a href="#GELU" class="headerlink" title="GELU"></a>GELU</h3><p>高斯误差线性单元是一个非初等函数形式的激活函数。</p>
+<p>网络正则化方面，dropout将神经元输出随机置0，Zoneout将RNN的单元随机跳过。两者均是输出乘上服从伯努利分布的变量m~Bernoulli(p)，p为取正的概率。</p>
+<p>希望p能够随着输入x的不同而不同，在x较小时以较大的概率将其置为0.由于神经元的输入通常服从正态分布，尤其是在加入了Batch Normalization的网络中，因此令p等于正态分布的累计分布函数即可满足。</p>
+<p>正态分布的概率密度函数：<br>$$<br>f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}<br>$$<br>累积分布函数：<br>$$<br>F(x)=\frac{1}{\sigma\sqrt{2\pi}}\int_{-\infty}^{x}exp(-\frac{(t-\mu)^2}{2\sigma^2})dt<br>$$<br>假设输入服从标准正态分布：X~N(0,1)，标准正态分布的累积分布函数习惯上记为Φ，Φ(x)=P(X≤x)</p>
+<p>由于激活函数在训练和测试时使用方式完全相同，所以需要有确定性的输出（测试时需要）。</p>
+<p>由于概率分布的数学期望是确定值，因此改为求输出的期望：<br>$$<br>E[mx]=xE[m]=xΦ(x)<br>$$<br>即对输入乘上伯努利分布的期望值p=Φ(x)<br>$$<br>Φ(x)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{x}exp(-\frac{t^2}{2})dt<br>\ = \frac{1}{2}+\frac{1}{\sqrt{2\pi}}\int_{0}^{x}exp(-\frac{t^2}{2})dt<br>\ = \frac{1}{2}(1+\frac{2}{\sqrt{\pi}}\int_{0}^{x}exp((-\frac{t}{\sqrt2})^2)\frac{dt}{\sqrt2})<br>\ = \frac{1}{2}(1+\frac{2}{\sqrt{\pi}}\int_{0}^{\frac{x}{\sqrt2}}exp(-z)^2dz)<br>\ = \frac{1}{2}(1+erf(\frac{x}{\sqrt{2}}))<br>$$<br>其中，erf称之为高斯误差函数，定义如下：<br>$$<br>erf(x)=\frac{1}{\sqrt{\pi}}\int_{-x}^{x}exp(-{t^2})dt=\frac{2}{\sqrt{\pi}}\int_{0}^{x}exp(-{t^2})dt<br>$$<br>给出两个近似：<br>$$<br>xΦ(x)≈x\sigma(1.702x)<br>\ xΦ(x) ≈ \frac{1}{2}x[1+tanh(\sqrt{\frac{2}{\pi}}(x+0.44715x^3))]<br>$$</p>
+<h2 id="Maxout"><a href="#Maxout" class="headerlink" title="Maxout"></a>Maxout</h2><p>Maxout可以看做是在深度学习网络中加入一层激活函数层，包含一个参数k。</p>
+<p>其特殊之处在于增加了k个神经元，然后输出激活值最大的值。<br>$$<br>h_i(x)=\max_{j∈[1,k]}z_{ij},<br>\z_{ij}=x^TW_{…ij}, W∈R^{d×m×k}<br>$$<br><img src="/2021/01/08/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0(ReLU,Swish,Maxout)/606386-20171009171758918-776097243.jpg" alt="maxout-networks-4-1024"></p>
+<p><strong>优点：</strong></p>
+<ol>
+<li>Maxout的拟合能力非常强，可以拟合任意的凸函数</li>
+<li>Maxout具有ReLU的所有优点，线性、不饱和性，同时没有ReLU的一些缺点，比如神经元死亡</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>整体参数的数量激增</li>
+</ol>
+<h3 id="Maxout激活函数"><a href="#Maxout激活函数" class="headerlink" title="Maxout激活函数"></a>Maxout激活函数</h3><p>与常规激活函数不同，它是一个可学习的分段线性函数。</p>
+<p>任何一个凸函数，都可以由线性分段函数进行逼近近似。如下图所示：</p>
+<p><img src="/2021/01/08/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0(ReLU,Swish,Maxout)/606386-20171009171740277-913264806.png" alt="maxout-convex-func-approximate!"></p>
+<p>前两种函数就可以看作是两条直线的拼接<br>$$<br>f(x)=max(w_1^Tx+b_1,w_2^Tx+b_2)<br>$$</p>
+<h2 id="Sigmoid-amp-tanh"><a href="#Sigmoid-amp-tanh" class="headerlink" title="Sigmoid &amp; tanh"></a>Sigmoid &amp; tanh</h2><p>sigmoid/logistic激活函数：<br>$$<br>\sigma(x)=\frac{1}{1+e^{-x}}<br>$$<br>tanh激活函数：<br>$$<br>tanh(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}<br>$$<br>tanh是对sigmoid的平移和缩放<br>$$<br>tanh(x)=2·\sigma(2x)-1<br>$$<br>导数：<br>$$<br>\sigma’(x)=\sigma(x)(1-\sigma(x))<br>\ tanh’(x)=1-tanh^2(x)<br>$$<br><strong>sigmoid的优势：</strong>能够控制数值的幅度，在深层网络中可以保持数据幅度不会出现太大的变化</p>
+<p><strong>sigmoid的问题：</strong></p>
+<ol>
+<li>在离中心点较远的x处导数接近0，停止反向传播的学习过程</li>
+<li>sigmoid的输出不是以0为中心，而是0.5，这样在求权重w的梯度时，梯度总是正或者负的</li>
+<li>指数计算耗时</li>
+</ol>
+<p><strong>为什么tanh比sigmoid收敛更快：</strong></p>
+<ol>
+<li>梯度消失问题，tanh的梯度消失问题比sigmoid要轻，因此收敛更快</li>
+<li>以零为中心的影响：如果当前参数(w0,w1)的最佳优化方向是(+d0, -d1),则根据反向传播计算公式,我们希望 x0 和 x1 符号相反。但是如果上一级神经元采用 Sigmoid 函数作为激活函数，sigmoid不以0为中心，输出值恒为正，那么我们无法进行最快的参数更新，而是走 Z 字形逼近最优解。</li>
+</ol>
+<h2 id="激活函数的作用"><a href="#激活函数的作用" class="headerlink" title="激活函数的作用"></a>激活函数的作用</h2><ol>
+<li><p>加入非线性因素</p>
+</li>
+<li><p>充分组合特征。一般函数都可以通过泰勒展开式来近似计算，如sigmoid激活函数的指数项可以通过如下的泰勒展开式来近似计算<br>$$<br>e^z=1+\frac{1}{1!}z+\frac{1}{2!}z^2+\frac{1}{3!}z^3+o(z^3)<br>$$<br>其中有平方项，立方项及更高项，而z=wx+b，因此可以看做是输入特征x的组合。</p>
+</li>
+</ol>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] <a target="_blank" rel="noopener" href="https://www.cnblogs.com/neopenx/p/4453161.html">https://www.cnblogs.com/neopenx/p/4453161.html</a></p>
+<p>[2] <a target="_blank" rel="noopener" href="https://www.cnblogs.com/makefile/p/activation-function.html">https://www.cnblogs.com/makefile/p/activation-function.html</a></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Shujie Hu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiaoshanhsj.github.io/2021/01/08/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0(ReLU,Swish,Maxout)/" title="激活函数(ReLU,Swish,Maxout)">https://xiaoshanhsj.github.io/2021/01/08/激活函数(ReLU,Swish,Maxout)/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" rel="tag"># 激活函数</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/07/Improving%20DNN%20AM%20Using%20Generalized%20Maxout%20Networks/" rel="prev" title="Improving DNN AM Using Generalized Maxout Networks论文记录">
+      <i class="fa fa-chevron-left"></i> Improving DNN AM Using Generalized Maxout Networks论文记录
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/08/Batch%20Normalization%E6%89%B9%E6%A0%87%E5%87%86%E5%8C%96/" rel="next" title="Batch Normalization批标准化">
+      Batch Normalization批标准化 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ReLU"><span class="nav-number">1.</span> <span class="nav-text">ReLU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E7%A8%80%E7%96%8F%E6%80%A7%E7%9A%84%E8%A7%82%E7%82%B9%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">关于稀疏性的观点：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E8%A7%A3%E7%A6%BB"><span class="nav-number">1.1.1.</span> <span class="nav-text">信息解离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%AF%E5%88%86%E6%80%A7"><span class="nav-number">1.1.2.</span> <span class="nav-text">线性可分性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%A0%E5%AF%86%E5%88%86%E5%B8%83%E4%BD%86%E6%98%AF%E7%A8%80%E7%96%8F"><span class="nav-number">1.1.3.</span> <span class="nav-text">稠密分布但是稀疏</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ReLU%E5%8F%98%E7%A7%8D"><span class="nav-number">1.2.</span> <span class="nav-text">ReLU变种</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Leaky-ReLU"><span class="nav-number">1.2.1.</span> <span class="nav-text">Leaky ReLU</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E6%95%B0%E7%BA%BF%E6%80%A7%E5%8D%95%E5%85%83ELU"><span class="nav-number">1.2.2.</span> <span class="nav-text">指数线性单元ELU</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SELU"><span class="nav-number">1.2.3.</span> <span class="nav-text">SELU</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Swish"><span class="nav-number">2.</span> <span class="nav-text">Swish</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GELU"><span class="nav-number">2.1.</span> <span class="nav-text">GELU</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maxout"><span class="nav-number">3.</span> <span class="nav-text">Maxout</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Maxout%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">3.1.</span> <span class="nav-text">Maxout激活函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sigmoid-amp-tanh"><span class="nav-number">4.</span> <span class="nav-text">Sigmoid &amp; tanh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">激活函数的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">6.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shujie Hu"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">Shujie Hu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/XiaoshanHsj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;XiaoshanHsj" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1191315155@qq.com" title="E-Mail → mailto:1191315155@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.researchgate.net/profile/Hu_Shujie" title="ResearchGate → https:&#x2F;&#x2F;www.researchgate.net&#x2F;profile&#x2F;Hu_Shujie" rel="noopener" target="_blank"><i class="fa fa-university fa-fw"></i>ResearchGate</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shujie Hu</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
