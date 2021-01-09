@@ -28,7 +28,7 @@
 <meta property="og:description" content="decoding in kaldi，参考kaldi官网">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-09T12:12:11.000Z">
-<meta property="article:modified_time" content="2021-01-09T12:46:22.000Z">
+<meta property="article:modified_time" content="2021-01-09T15:35:30.000Z">
 <meta property="article:author" content="Shujie Hu">
 <meta property="article:tag" content="Kaldi decoding">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-01-09 20:12:11 / 修改时间：20:46:22" itemprop="dateCreated datePublished" datetime="2021-01-09T20:12:11+08:00">2021-01-09</time>
+              <time title="创建时间：2021-01-09 20:12:11 / 修改时间：23:35:30" itemprop="dateCreated datePublished" datetime="2021-01-09T20:12:11+08:00">2021-01-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -219,7 +219,41 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h2 id="Decoding-graph-construction-in-Kaldi"><a href="#Decoding-graph-construction-in-Kaldi" class="headerlink" title="Decoding graph construction in Kaldi"></a>Decoding graph construction in Kaldi</h2><h3 id="Overview-of-graph-creation"><a href="#Overview-of-graph-creation" class="headerlink" title="Overview of graph creation"></a>Overview of graph creation</h3><p>我们要构建的图HCLG=H o C o L o G，其中</p>
+<ul>
+<li>G是一个acceptor，它的输入和输出符号是相同的，G用来对grammar或者LM进行编码</li>
+<li>L是lexicon，它的输出是words，输入是phones</li>
+<li>C代表上下文相关性：它的输出是phones，输入是上下文相关音素，也就是windows of N phones</li>
+<li>H包含HMM的定义，它的输出是上下文相关音素，输入是transition-ids</li>
+</ul>
+<p>我门想要保证输出是确定的并且是最小的，为了让HCLG是可确定的，我们必须加入消歧符号；同时我们也想要保证HCLG是尽可能随机的（stochastic），这可以通过“push-weights”操作实现，但是kaldi是通过保证在图生成中没有去除随机性的步骤。</p>
+<p>如果用一句话来总结的话就是</p>
+<p>HCLG = asl(min(rds(det(H’ o min(det(C o min(det(L o G))))))))</p>
+<p>其中，asl==”add-self-loops”，rds==”remove-disambiguation-symbols”，H’ 就是没有self-loops的H</p>
+<p>只要G是stochastic，同时没有任何图生成中影响随机性，那么HCLG就是stochastic的；当然，G一般不是是非常stochastic的，因为LM中的backoff；但是只是可以保证情况不会变得更坏。</p>
+<h3 id="消歧符号"><a href="#消歧符号" class="headerlink" title="消歧符号"></a>消歧符号</h3><p>消歧符号就是#1，#2这些被加在词典的音素序列后面的符号。当一个音素序列是其他序列的前缀时或者超过了一个word，它就需要有这些符号。</p>
+<p>消歧符号保证了L o G是可确定性的。</p>
+<p>我们在LM的回退弧(backoff arcs)有一个#0，这保证了G在去除了空边之后是确定性的；同时我们用#-1代替在上下文FST C左边的空边，也就是句子的开头（在我们开始输出符号之前）。这样做是为了解决没有音素表示的words而导致的问题，比如表示句子开始的&lt;s&gt;和&lt;/s&gt;</p>
+<p>这里给出图产生阶段（比如LG,CLG,HCLG）是确定性的要点。这里说的确定性，是指去除了空边之后的确定性。</p>
+<p>大体步骤如下：首先我们规定G必须是确定性的，这就是为什么我们需要#0；然后我们想要L o G也是确定性的，这对于L需要有以下两个特性：</p>
+<ul>
+<li>L^-1必须是functional的，这等价于任何L的输入序列只能有一个唯一的输出序列，也等价于对于任何的线性acceptor A，A o L也是一个线性acceptor，或者是empty</li>
+<li>L有twins的特性，这就是说对于相同的输入序列，没有两个可达的状态，即使他们的权重或者输出不同。</li>
+</ul>
+<p>同样C也有会这个相同的特性。</p>
+<h3 id="The-ContextFst-object"><a href="#The-ContextFst-object" class="headerlink" title="The ContextFst object"></a>The ContextFst object</h3><p>C是一个动态生成的FST对象，用于将context-dependent音素转换为context-independent音素，这样做的是为了避免我们需要枚举所有可能的上下文相关音素，当N很大时，N^3是很可怕的。构造器ContextFst::ContextFst要求context-width(N)和central-position(P)，比如对于一般的triphone,N和P分别是3和1。除此之外还需要一个”$”符号的整型id，FST在看完所有音素之后输出N-P-1次（这保证了C的输出确定性的）。然后还需要音素和消歧符号的id列表。C的输出包括音素、消歧符号和”$”，然后输出就是context音素，消歧符号和代替空边的#-1符号（当作另一种消歧符号。）输入和输出的消歧符号的id不一定要相同。</p>
+<h3 id="Avoiding-weight-pushing"><a href="#Avoiding-weight-pushing" class="headerlink" title="Avoiding weight pushing"></a>Avoiding weight pushing</h3><p>当使用statistical的语言模型时，由于一些words被计算了两次（直接和通过backoff acrs）因此会出现概率之和大于1的bad effects.</p>
+<p>为了避免这种情况，我们使用一种不同的方法。首先，我们定义”stochastic“ FST是指它的权重之和为1.</p>
+<p>在图生成过程中，如果前一个阶段是stochastic的，那么下一个阶段也会是。这就是说每一个独立的操作必须保留住这个随机性。</p>
+<p>首先测量G的所有状态的最小值和最大值，也就是这些状态的（弧概率加上最终概率）之和。如果G是随机的，这两个数字都会是1。我们希望通过以最小值和最大值不会离1越来越远的方式来保留随机性。</p>
+<p>有很多种算法帮助我们保留随机性，包括：</p>
+<ul>
+<li>最小化</li>
+<li>确定化</li>
+<li>去除空边</li>
+<li>复合</li>
+</ul>
+
     </div>
 
     
@@ -316,6 +350,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Decoding-graph-construction-in-Kaldi"><span class="nav-number">1.</span> <span class="nav-text">Decoding graph construction in Kaldi</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview-of-graph-creation"><span class="nav-number">1.1.</span> <span class="nav-text">Overview of graph creation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%AD%A7%E7%AC%A6%E5%8F%B7"><span class="nav-number">1.2.</span> <span class="nav-text">消歧符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-ContextFst-object"><span class="nav-number">1.3.</span> <span class="nav-text">The ContextFst object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Avoiding-weight-pushing"><span class="nav-number">1.4.</span> <span class="nav-text">Avoiding weight pushing</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
