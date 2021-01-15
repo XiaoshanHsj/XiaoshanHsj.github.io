@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xiaoshanhsj.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="TORGO论文相关整理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="torgo papers 2012-2016">
+<meta property="og:url" content="https://xiaoshanhsj.github.io/2021/01/12/torgo%20papers%202012-2016/index.html">
+<meta property="og:site_name" content="XiaoshanHsj">
+<meta property="og:description" content="TORGO论文相关整理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/12/torgo%20papers%202012-2016/image-20210112173742576.png">
+<meta property="article:published_time" content="2021-01-12T06:52:11.000Z">
+<meta property="article:modified_time" content="2021-01-15T14:53:34.000Z">
+<meta property="article:author" content="Shujie Hu">
+<meta property="article:tag" content="TORGO">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoshanhsj.github.io/2021/01/12/torgo%20papers%202012-2016/image-20210112173742576.png">
+
+<link rel="canonical" href="https://xiaoshanhsj.github.io/2021/01/12/torgo%20papers%202012-2016/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>torgo papers 2012-2016 | XiaoshanHsj</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">XiaoshanHsj</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">脚踏实地，仰望星空</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">15</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaoshanhsj.github.io/2021/01/12/torgo%20papers%202012-2016/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Shujie Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XiaoshanHsj">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          torgo papers 2012-2016
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-12 14:52:11" itemprop="dateCreated datePublished" datetime="2021-01-12T14:52:11+08:00">2021-01-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-15 22:53:34" itemprop="dateModified" datetime="2021-01-15T22:53:34+08:00">2021-01-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Disordered-Speech/" itemprop="url" rel="index"><span itemprop="name">Disordered Speech</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">TORGO论文相关整理</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Comparing-Humans-and-Automatic-Speech-Recognition-Systems-in-Recognition-Dysarthric-Speech"><a href="#Comparing-Humans-and-Automatic-Speech-Recognition-Systems-in-Recognition-Dysarthric-Speech" class="headerlink" title="Comparing Humans and Automatic Speech Recognition Systems in Recognition Dysarthric Speech"></a>Comparing Humans and Automatic Speech Recognition Systems in Recognition Dysarthric Speech</h2><h3 id="Data-Description"><a href="#Data-Description" class="headerlink" title="Data Description"></a>Data Description</h3><p>The speaker-independent acoustic model are built using a subset of the TORGO database consisting of over 8400 utterances.</p>
+<p>The SI models are trained and evaluated using the leave-one-out method. The held-out data from the test speakers is divided into an evaluation-set and an adaptation-set.</p>
+<p>eight words: 4 phonetically similar words, 3 foils generated from the N-best list obtained from an HMM-based SR trained on the entire data.</p>
+<h3 id="Acoustic-Features"><a href="#Acoustic-Features" class="headerlink" title="Acoustic Features"></a>Acoustic Features</h3><p>Mel-Frequency Cepstral Coefficients (MFCCs)</p>
+<p>Linear Predictive Coding-Cepstral Coefficients (LPCCs)</p>
+<p>Perceptual Linear Prediction (PLP) coefficients with various feature parameters, including the use of Cepstral Mean Subtraction (CMS), the use of the 0<sup>th</sup> order cepstral coefficient as the energy term instead of the log of the signal energy.</p>
+<p>The recognition performance of the baseline of SI monophone models based on MFCC, PLP coefficients with the 0<sup>th</sup> order cepstral coefficient and LPCC are 39.94%, 39.5% and 34.33%, respectively.</p>
+<p>comparison on speakers-adapted systems showed that PLP-based models outperformed MFCC-based systems by 2.5% absolute.</p>
+<p>39 dimensions; 15ms for dysarthric speech; 10ms for non-dysarthric speech.</p>
+<h3 id="SI-Baseline-Models"><a href="#SI-Baseline-Models" class="headerlink" title="SI Baseline Models"></a>SI Baseline Models</h3><p>40 left-to-right, 3-state monophone HMM and one single-state short pause model.</p>
+<p>16 Gaussian mixture components per state.</p>
+<p><strong>eight-word</strong> finite-state grammar (为了对应之前的人类测试，从8个选项中选择一个正确的).</p>
+<p>CMU pronunciation dictionary.</p>
+<p>the baseline SI monophone models using PLP acoustic features on single-word recognition where eight alternatives are provided for each utterance is 39.5%.</p>
+<h3 id="Acoustic-and-Lexical-Model-Adaptation"><a href="#Acoustic-and-Lexical-Model-Adaptation" class="headerlink" title="Acoustic and Lexical Model Adaptation"></a>Acoustic and Lexical Model Adaptation</h3><p>analyze the pronunciation deviations of each dysarthric subject from the canonical form and build an associated <strong>speaker-specific pronunciation lexicon</strong> that incorporates their particular behavior of pronunciation.</p>
+<p>Using the adaptation data from a particular speaker, we perform a two-pass MLLR adaptation: First, a global adaptation; Second, a regression class tree. This process resulted in 25.81% absolute (43.07% relative) improvement.</p>
+<p>Using SD pronunciation lexicons, during recognition improved the word recognition rate further by an average of 3.18% absolute (8.64% relative)</p>
+<p>In total, improved by 28.99% absolute (47.94% relative) yielding a mean word recognition accuracy of 68.39%; for non-dysarthric speech, the mean word recognition accuracy of the SI models is 71.13%. After acoustic model adaptation, the mean word recognition accuracy rise to 88.55%.</p>
+<p><img src="/2021/01/12/torgo%20papers%202012-2016/image-20210112173742576.png" alt="image-20210112173742576"></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Shujie Hu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiaoshanhsj.github.io/2021/01/12/torgo%20papers%202012-2016/" title="torgo papers 2012-2016">https://xiaoshanhsj.github.io/2021/01/12/torgo papers 2012-2016/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/TORGO/" rel="tag"># TORGO</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/10/WFST/" rel="prev" title="WFST">
+      <i class="fa fa-chevron-left"></i> WFST
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/14/Speaker-invariant%20Training%20via%20adversarial%20learning/" rel="next" title="Speaker-invariant Training via adversarial learning">
+      Speaker-invariant Training via adversarial learning <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Comparing-Humans-and-Automatic-Speech-Recognition-Systems-in-Recognition-Dysarthric-Speech"><span class="nav-number">1.</span> <span class="nav-text">Comparing Humans and Automatic Speech Recognition Systems in Recognition Dysarthric Speech</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Description"><span class="nav-number">1.1.</span> <span class="nav-text">Data Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Acoustic-Features"><span class="nav-number">1.2.</span> <span class="nav-text">Acoustic Features</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SI-Baseline-Models"><span class="nav-number">1.3.</span> <span class="nav-text">SI Baseline Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Acoustic-and-Lexical-Model-Adaptation"><span class="nav-number">1.4.</span> <span class="nav-text">Acoustic and Lexical Model Adaptation</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shujie Hu"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">Shujie Hu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/XiaoshanHsj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;XiaoshanHsj" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1191315155@qq.com" title="E-Mail → mailto:1191315155@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.researchgate.net/profile/Hu_Shujie" title="ResearchGate → https:&#x2F;&#x2F;www.researchgate.net&#x2F;profile&#x2F;Hu_Shujie" rel="noopener" target="_blank"><i class="fa fa-university fa-fw"></i>ResearchGate</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shujie Hu</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
