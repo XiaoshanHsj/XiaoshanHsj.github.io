@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xiaoshanhsj.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Deep Neural Network Based Acoustic-to-articulatory Inversion Using Phone Sequence Information论文学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Neural Network Based Acoustic-to-articulatory Inversion Using Phone Sequence Information">
+<meta property="og:url" content="https://xiaoshanhsj.github.io/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/index.html">
+<meta property="og:site_name" content="XiaoshanHsj">
+<meta property="og:description" content="Deep Neural Network Based Acoustic-to-articulatory Inversion Using Phone Sequence Information论文学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-18T12:52:11.000Z">
+<meta property="article:modified_time" content="2021-01-19T14:51:12.000Z">
+<meta property="article:author" content="Shujie Hu">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://xiaoshanhsj.github.io/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Deep Neural Network Based Acoustic-to-articulatory Inversion Using Phone Sequence Information | XiaoshanHsj</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">XiaoshanHsj</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">脚踏实地，仰望星空</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">17</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaoshanhsj.github.io/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Shujie Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XiaoshanHsj">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Deep Neural Network Based Acoustic-to-articulatory Inversion Using Phone Sequence Information
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-18 20:52:11" itemprop="dateCreated datePublished" datetime="2021-01-18T20:52:11+08:00">2021-01-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-19 22:51:12" itemprop="dateModified" datetime="2021-01-19T22:51:12+08:00">2021-01-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Acoustic-to-articulatory/" itemprop="url" rel="index"><span itemprop="name">Acoustic-to-articulatory</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">Deep Neural Network Based Acoustic-to-articulatory Inversion Using Phone Sequence Information论文学习</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h3><p>基于神经网络的acoustic-to-articulatory inversion方法表现是state-of-the-art的，但是有个问题就是转换的时候缺少音素序列信息。为了解决这个issue，这篇paper提出了一个将音素分类和inversion串联的架构来提高articulatory动作的生成。</p>
+<p>在一个普通话转换任务上，提出的方法超过了DNN和RNN的baseline，这些架构要么使用没有因素序列的信息，混合密度参数的输出层，在输入层使用额外音素特征，或者多任务学习额外的单音素输出层目标标签，都使用EMA均方根误差和相关系数衡量。</p>
+<p>使用这个结构中提取出来的瓶颈层作为辅助特征，基于generalized variable parameter HMMs的转换系统可以得到更大的提升。</p>
+<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>movements of articulators可以作为语音声学代表的可视化替代品。准确的内外articulatory movements是通过electromagnetic articulography (EMA)记录的。但是由于记录大量的高质量articulatory movements的代价太高了，因此从声学数据转换到articulatory movements的统计方法经常被使用。这些转换方法可以被分为两大类。</p>
+<p>第一类是生成模型，使用HMMs来对acoustic和articulatory数据进行联合建模，比如一些有效的模型比如multiple regression HMM和generalized variable parameter HMMs。这些方法的一个问题就是需要句子的音素序列信息。一般来说，得到转录标注是不简单的，同时使用ASR的话会引入错误导致转换效果有明显的下降。</p>
+<p>第二种是广义的非线性回归技术，以ANNs为代表。早期研究使用传统的浅层MLPs。这些模型最开始用来直接从acoustic特征映射到articulatory movements，之后用MDNs或者RNNs来生成articulatory trajectory 密度分布参数。这些技术利用了神经网络固有的强大泛化性能和序列建模能力。训练阶段不用使用phone或者viseme信息。相反，它们是通过隐藏层的呈现，以一种无监督的方式隐性学习的。因此不同音素或者viseme单元的相邻acoustic或者articulatory帧的区别是不会被学习到的。这被发现在转换过程中会产生噪音articulatory movement trajectories。</p>
+<p>为了解决这个问题，叠加的DNN和RNN转换方法被提出来。一个使用声学特征输入的DNN或者RNN底层音素分类用来产生瓶颈特征。这些内容使用传统的声学前端进行增强然后喂到一个顶层的DNN或者RNN网络articulatory转换器中。</p>
+<h3 id="ANN-based-articulatory-inversion"><a href="#ANN-based-articulatory-inversion" class="headerlink" title="ANN based articulatory inversion"></a>ANN based articulatory inversion</h3><p>![image-20210118230508000](H:\github page\Hexo\source_posts\Deep Neural Network Based Acoustic-to-articulatory\image-20210118230508000.png)</p>
+<p>这两个模型的输入包括在每个时间实例上构建的声学特征的上下文窗口，隐藏层可以是feedforward层或者recurrent层。在MLP和DNN的a2a转换网络中，Sigmoid或者线性激活函数用在输出层。静止的articulatory特征用来当作有监督的标签。相反的，一个特别设计的，用于预测GMM基准的articulatory trajectory参数的输出层用在MDNs或者深层MDNs中。通常，HMM方法中GMM层中会使用一个单高斯组件。在转换的时候，先计算每一帧的高斯组件参数，之后用最大似然参数生成(MLPG)算法来生成静止的articulatory feature。</p>
+<h3 id="Improved-ANN-based-articulatory-inversion-using-phone-sequence-information"><a href="#Improved-ANN-based-articulatory-inversion-using-phone-sequence-information" class="headerlink" title="Improved ANN based articulatory inversion using phone sequence information"></a>Improved ANN based articulatory inversion using phone sequence information</h3><h4 id="Using-input-phone-features"><a href="#Using-input-phone-features" class="headerlink" title="Using input phone features"></a>Using input phone features</h4><p>标准的声学特征被加上了二进制的单因素标签。使用这个结构，句子的音素序列在训练和测试中都需要。如图2左边的结构。</p>
+<h4 id="Multi-task-learning-based-inversion"><a href="#Multi-task-learning-based-inversion" class="headerlink" title="Multi-task learning based inversion"></a>Multi-task learning based inversion</h4><p>音素信息可以和articulatory特征同时建模——用DNNs转换进行多任务学习。在这些系统中，主任务和传统的DNN转换器一样，副任务是使用有监督标签进行单音素分类。如图2右边的结构。</p>
+<p>![image-20210119163916125](H:\github page\Hexo\source_posts\Deep Neural Network Based Acoustic-to-articulatory\image-20210119163916125.png)</p>
+<h4 id="Hierarchical-NN-based-articulatory-inversion"><a href="#Hierarchical-NN-based-articulatory-inversion" class="headerlink" title="Hierarchical NN based articulatory inversion"></a>Hierarchical NN based articulatory inversion</h4><p>这个stacked, hierarchical ANN architecture包含了一个底层的分类子网络和一个顶层转换子网络。底层音素分类器是一个DNN或者RNN，它的输入时声学特征，输出是单音素标签，这个分类器可以用来生成瓶颈特征。瓶颈特征可以代表音素序列信息的潜在表示；瓶颈特征加上传统的声学特征，然后送到顶层的articulatory转换DNN或者RNN自网络中。如图3所示。</p>
+<p>![image-20210119165543810](H:\github page\Hexo\source_posts\Deep Neural Network Based Acoustic-to-articulatory\image-20210119165543810.png)</p>
+<p>构建这样一个NN系统主要分成两个阶段。第一个阶段，底层网络使用传统的交叉熵准则。在第二个阶段，单音素分类器产生的瓶颈层特征被加到acoustic特征上，组成上下文的tandem特征来训练这个转换网络。但是这个阶段有两个issue需要解决。</p>
+<p>首先，为了保证训练过程中稳定和快速的收敛，最顶层的子网络使用一个传统的DNN/RNN转换器模型进行初始化，传统的转换器模型是没有瓶颈特征的，因此瓶颈特征的权重的初始化是随机的。第二个就是只有输入层与瓶颈特征有关的权重需要全部更新，而剩余的权重只需要微调，这样的话要对这两个部分设置不同的学习率才行。为了让转换子网络处理瓶颈特征更加高效，输入层连接瓶颈特征的权重乘上一个因子α=2。</p>
+<h3 id="Hierarchical-inversion-bottleneck-feature-for-tandem-GVP-HMM-based-inversion"><a href="#Hierarchical-inversion-bottleneck-feature-for-tandem-GVP-HMM-based-inversion" class="headerlink" title="Hierarchical inversion bottleneck feature for tandem GVP-HMM based inversion"></a>Hierarchical inversion bottleneck feature for tandem GVP-HMM based inversion</h3><p>当<strong>测试</strong>句子的音素序列是知道的，hierarchical inversion NN 系统也能当作辅助特征提取器，辅助特征用于generalized variable parameter HMMs (GVP-HMMs)可以得到更多的提升。这需要在顶层的转换子网络中添加一个瓶颈层，如图4</p>
+<p>![image-20210119194041961](H:\github page\Hexo\source_posts\Deep Neural Network Based Acoustic-to-articulatory\image-20210119194041961.png)</p>
+<p>对于帧t的N维的瓶颈特征向量表示为<br>$$<br>f_t^{BN}=[v_{t,1}, …, v_{t,j}, …,v_{t,N}]<br>$$<br>多项式的阶为P，一个P*N+1维度的Vandermonde向量构建如下<br>$$<br>v_t^{T}=[1, \hat f_{t,1}, …,\hat f_{t,p},…,\hat f_{t,P}]^{T}<br>$$<br>N维的第p个子向量定义为<br>$$<br>\hat f_{t,p} =[v_{t,1}^p,…,v_{t,j}^p,…,v_{t,N}^p]<br>$$<br>其中Vandermonde向量用来训练tandem GVP-HMMs。GVP-HMMs对articulatory和acoustic流的联合状态概率函数进行建模。在第t帧，对于一个给定的状态q，可以得到<br>$$<br>b_q(a_t,o_t)=\Nu(a_t;\mu_q^{(a)}(v_t),Σ_q^{(a)}(v_t))\Nu(o_t;\mu_q^{(o)},Σ_q^{(o)})<br>$$<br>其中a<sub>t</sub>和o<sub>t</sub>是articulatory和acoustic特征。</p>
+<p>GVP-HMMs提供了articulatory和acoustic复杂关系的灵活建模方式。高斯均值和方差的trajectory函数u<sub>q</sub>(·)，Σ<sub>q</sub>(·)能够被给定的辅助特征的P阶多项式表示。当对角协方差被使用时，第i维的均值和方差的trajectory是<br>$$<br>\mu_{q,i}^{(a)}(v_t)=v_t·c^{(\mu_{q,i}^{(a)})} \<br>\sigma_{q,i,i}^{(a)}(v_t)=\hat \sigma _{q,i,i}^{a} \ v_t·c^{(\sigma_{q,i,i}^{(a)})}<br>$$<br>其中c<sup>(·)</sup>是P*N+1维的多项式系数向量，</p>
+<p>![image-20210119214813556](H:\github page\Hexo\source_posts\Deep Neural Network Based Acoustic-to-articulatory\image-20210119214813556.png)是传统的HMM方差估计。系数向量可以用最大似然更新方案来估计。利用高效的贝叶斯模型复杂度控制技术，可以优化不同参数的多项式阶数P所代表的GVP-HMM模型底层结构。有了GVP-HMM状态参数trajectories，最终的articulatory movements就可以使用MLPG算法生成了。</p>
+<h3 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h3><h4 id="EMA-data-and-experiment-setup"><a href="#EMA-data-and-experiment-setup" class="headerlink" title="EMA data and experiment setup"></a>EMA data and experiment setup</h4><p>普通话语音和相关的EMA数据用一个Carstens AG-501 EMA设备进行记录。忽略一些小的movements，按上唇、下唇、舌背、tongue dorsum、舌尖和下颌的x-和y-坐标，以及口腔右角（与左角对称）的z-坐标，依次选取每一帧的13维静态EMA特征向量，并通过将平均静态位置设置为零进一步归一化。39维的MFCC声学特征从语音中提取。利用均方根误差(RMSE)和相关性来评估预测的EMA数据。其中训练、验证和测试数据分别包括2950，50和50个句子，总共2.9小时。</p>
+<p>articulatory转换DNNs包括5个512个神经元的前向层。作比较的RNN有3个每层512个神经元的前向层，2个128个单元的LSTM层和用于维度减少的递归投影层。一个11帧MFCC的上下文窗口只选择每隔一帧作为其输入，13个静态EMA特征作为目标。</p>
+<p>分类DNN和RNN使用相同的声学特征作为输入，118个tonal单音素标签作为输出目标。分类子网络产生39维的特征，然后和声学特征串联后来训练articulatory转换DNN或者RNN。除此之外，音素输入特征和多任务学习转换ANNs也会被训练，MDN也是。最后每个系统表现最好的特征会被用来产生GVP-HMM的辅助特征。Kaldi用来训练所有的神经网络，HTK用来训练GVP-HMM。对于所有的结果，基于统计意义测试的paired t-test用RMSE reduction.</p>
+<h4 id="Experiments-results"><a href="#Experiments-results" class="headerlink" title="Experiments results"></a>Experiments results</h4><p>![image-20210119222139854](H:\github page\Hexo\source_posts\Deep Neural Network Based Acoustic-to-articulatory\image-20210119222139854.png)</p>
+<p>其中p值栏仅显示与相应的 “Phn “NN基线相比的RMSE降低意义。</p>
+<p>可以看到hierarchical转换系统都超过了baseline DNNs。RNN的底层音素分类子网络能够比DNN音素分类网络能够保留长时信息。同时这在用底层产生的瓶颈特征的顶层网络也有所体现（line 7，8），当两个网络都使用RNN时表现最好。</p>
+<p>使用瓶颈特征的混合GVP-HMM转换系统表现如下，其中RNN是表1的line 9，DNN是line 1，hierarchical systems是line 8 和 line 14.</p>
+<p>![image-20210119224712651](H:\github page\Hexo\source_posts\Deep Neural Network Based Acoustic-to-articulatory\image-20210119224712651.png)</p>
+<p>图5展示了一个普通话语音的EMA trajectory的例子，分别使用传统的RNN和hierarchical inversion RNN和GVP-HMM系统 。</p>
+<p>![image-20210119224934247](H:\github page\Hexo\source_posts\Deep Neural Network Based Acoustic-to-articulatory\image-20210119224934247.png)</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Shujie Hu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiaoshanhsj.github.io/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/" title="Deep Neural Network Based Acoustic-to-articulatory Inversion Using Phone Sequence Information">https://xiaoshanhsj.github.io/2021/01/18/Deep Neural Network Based Acoustic-to-articulatory/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/16/Audio-to-Visual%20Speech%20Conversion%20using%20Deep%20Neural%20Networks/" rel="prev" title="Audio-to-Visual Speech Conversion using Deep Neural Networks">
+      <i class="fa fa-chevron-left"></i> Audio-to-Visual Speech Conversion using Deep Neural Networks
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ANN-based-articulatory-inversion"><span class="nav-number">3.</span> <span class="nav-text">ANN based articulatory inversion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Improved-ANN-based-articulatory-inversion-using-phone-sequence-information"><span class="nav-number">4.</span> <span class="nav-text">Improved ANN based articulatory inversion using phone sequence information</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Using-input-phone-features"><span class="nav-number">4.1.</span> <span class="nav-text">Using input phone features</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Multi-task-learning-based-inversion"><span class="nav-number">4.2.</span> <span class="nav-text">Multi-task learning based inversion</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hierarchical-NN-based-articulatory-inversion"><span class="nav-number">4.3.</span> <span class="nav-text">Hierarchical NN based articulatory inversion</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hierarchical-inversion-bottleneck-feature-for-tandem-GVP-HMM-based-inversion"><span class="nav-number">5.</span> <span class="nav-text">Hierarchical inversion bottleneck feature for tandem GVP-HMM based inversion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Experiments"><span class="nav-number">6.</span> <span class="nav-text">Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#EMA-data-and-experiment-setup"><span class="nav-number">6.1.</span> <span class="nav-text">EMA data and experiment setup</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Experiments-results"><span class="nav-number">6.2.</span> <span class="nav-text">Experiments results</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shujie Hu"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">Shujie Hu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/XiaoshanHsj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;XiaoshanHsj" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1191315155@qq.com" title="E-Mail → mailto:1191315155@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.researchgate.net/profile/Hu_Shujie" title="ResearchGate → https:&#x2F;&#x2F;www.researchgate.net&#x2F;profile&#x2F;Hu_Shujie" rel="noopener" target="_blank"><i class="fa fa-university fa-fw"></i>ResearchGate</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shujie Hu</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
