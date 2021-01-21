@@ -27,13 +27,21 @@
 <meta property="og:site_name" content="XiaoshanHsj">
 <meta property="og:description" content="Investigation of Data Augmentation Techniques for Disordered Speech Recognition论文阅读记录">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/20/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210120220631421.png">
 <meta property="og:image" content="file://H:/github%20page/Hexo/source/_posts/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210120220631421.png?lastModify=1611151635">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/20/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210120220631421.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/20/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210120221756260.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/20/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210120224531851.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/20/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210120232218934.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/20/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210121222601607.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/20/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210121223626712.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/20/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210121235103429.png">
 <meta property="article:published_time" content="2021-01-20T12:02:11.000Z">
-<meta property="article:modified_time" content="2021-01-20T15:43:42.000Z">
+<meta property="article:modified_time" content="2021-01-21T15:51:20.000Z">
 <meta property="article:author" content="Shujie Hu">
 <meta property="article:tag" content="data-augmentation">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="file://H:/github%20page/Hexo/source/_posts/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210120220631421.png?lastModify=1611151635">
+<meta name="twitter:image" content="https://xiaoshanhsj.github.io/2021/01/20/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210120220631421.png">
 
 <link rel="canonical" href="https://xiaoshanhsj.github.io/2021/01/20/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/">
 
@@ -223,10 +231,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-01-20 20:02:11 / 修改时间：23:43:42" itemprop="dateCreated datePublished" datetime="2021-01-20T20:02:11+08:00">2021-01-20</time>
+              <time title="创建时间：2021-01-20 20:02:11" itemprop="dateCreated datePublished" datetime="2021-01-20T20:02:11+08:00">2021-01-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-21 23:51:20" itemprop="dateModified" datetime="2021-01-21T23:51:20+08:00">2021-01-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -259,19 +273,40 @@
 <h3 id="Data-Augmentation"><a href="#Data-Augmentation" class="headerlink" title="Data Augmentation"></a>Data Augmentation</h3><h4 id="VTLP-Based-Data-Augmentation"><a href="#VTLP-Based-Data-Augmentation" class="headerlink" title="VTLP Based Data Augmentation"></a>VTLP Based Data Augmentation</h4><p>vocal tract的形状因人而异。Vocal tract length normalization (VTLN)用来抑制这些不同。通过反向应用VTLN，VTLP通过模拟不同的声道长度来增加语音数据的变异性。</p>
 <p>给定一个时间域的声音段x(t)，标记对应的频率域为X(f)，即对x(t)的傅里叶变换。VTLP从一个离散集合中取一个作为扰动因子α，比如{0.9，1.1}，作用在X(f)的频率轴上，输出Y(f)如下：<br>$$<br>Y(f)=X(\alpha f)<br>$$<br>这样一来，VTLP扰动了声音段的频谱线，但是持续时间没有变化。</p>
 <h4 id="Tempo-Perturbation-Based-Data-Augmentation"><a href="#Tempo-Perturbation-Based-Data-Augmentation" class="headerlink" title="Tempo Perturbation Based Data Augmentation"></a>Tempo Perturbation Based Data Augmentation</h4><p>TP拉伸声音信号x(t)的持续时间而不改变频谱线的形状。这是通过首先将时域音频段x(t)分解成短的分析块，然后沿时间轴重新定位这些块来构建扰动输出y(t)来实现的。一个有名的算法是waveform similarity overlap-add (WSOLA)，它通过迭代地找到每个分析块地最佳位置来让y(t)与x(t)共享最大的相似。</p>
-<p>假设时域声音信号x(t)被分解成短分析块![image-20210120220631421](H:\github page\Hexo\source_posts\Investigation of Data Augmentation Techniques for Disordered Speech Recognition\image-20210120220631421.png)</p>
+<p>假设时域声音信号x(t)被分解成短分析块<img src="/2021/01/20/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210120220631421.png" alt="image-20210120220631421"></p>
 <p>这些块在时间轴上是平均分的，analysis hopsize是H<sub>a</sub></p>
-<p>给定一个扰动因子α，合成块根据synthesis hopsize H<sub>s</sub>沿着时间轴重排<br>$$<br>H_s=\alpha·H_a<br>$$<br>WSOLA采用迭代算法来更新分析块的位置。比如，<img src="file://H:/github%20page/Hexo/source/_posts/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210120220631421.png?lastModify=1611151635" alt="image-20210120220631421">的中心根据Δ<sub>m</sub>∈[-Δ<sub>max</sub>, Δ<sub>max</sub>]进行移动，其中Δ<sub>m</sub>的最优值是通过最大化与![image-20210120220631421](H:\github page\Hexo\source_posts\Investigation of Data Augmentation Techniques for Disordered Speech Recognition\image-20210120220631421.png)和![image-20210120221756260](H:\github page\Hexo\source_posts\Investigation of Data Augmentation Techniques for Disordered Speech Recognition\image-20210120221756260.png)之间的cross-correlation得到的。这保证了当两帧都使用synthesis hopsize时，在重叠区域，调整的分析帧的周期性结构和之前复制的合成帧结构是最佳的对齐。之后汉明窗函数w(r)被应用在分析块上来计算合成块。</p>
+<p>给定一个扰动因子α，合成块根据synthesis hopsize H<sub>s</sub>沿着时间轴重排<br>$$<br>H_s=\alpha·H_a<br>$$<br>WSOLA采用迭代算法来更新分析块的位置。比如，<img src="file://H:/github%20page/Hexo/source/_posts/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210120220631421.png?lastModify=1611151635" alt="image-20210120220631421">的中心根据Δ<sub>m</sub>∈[-Δ<sub>max</sub>, Δ<sub>max</sub>]进行移动，其中Δ<sub>m</sub>的最优值是通过最大化与<img src="/2021/01/20/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210120220631421.png" alt="image-20210120220631421">和<img src="/2021/01/20/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210120221756260.png" alt="image-20210120221756260">之间的cross-correlation得到的。这保证了当两帧都使用synthesis hopsize时，在重叠区域，调整的分析帧的周期性结构和之前复制的合成帧结构是最佳的对齐。之后汉明窗函数w(r)被应用在分析块上来计算合成块。</p>
 <p>在完成了全部的迭代，合成帧将被处理来重建实际的time-scale修改的输出信号y(t)，其方式与传统的OLA相似。最终，y(t)保持与x(t)相同的频谱形状，但是有一个不同的长度。</p>
 <h4 id="Speed-Perturbation-Based-Data-Augmentation"><a href="#Speed-Perturbation-Based-Data-Augmentation" class="headerlink" title="Speed Perturbation Based Data Augmentation"></a>Speed Perturbation Based Data Augmentation</h4><p>SP在时域上对声音信号进行重新采样。给定一个语音段x(t)，一个作用在时间轴上的扰动因子α<br>$$<br>y(t)=x(\alpha t)<br>$$<br>在频率域上，这等价于<br>$$<br>X(f)\rightarrow\frac{1}{\alpha}X(\frac{1}{\alpha}f)<br>$$<br>SP会改变语音信号的时长和扰动频谱。</p>
 <p>表格1总结了上面三种方法的特性</p>
-<p>![image-20210120224531851](H:\github page\Hexo\source_posts\Investigation of Data Augmentation Techniques for Disordered Speech Recognition\image-20210120224531851.png)</p>
+<p><img src="/2021/01/20/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210120224531851.png" alt="image-20210120224531851"></p>
 <h4 id="Speaker-Dependent-Perturbation-Factor-Estimation"><a href="#Speaker-Dependent-Perturbation-Factor-Estimation" class="headerlink" title="Speaker Dependent Perturbation Factor Estimation"></a>Speaker Dependent Perturbation Factor Estimation</h4><p>鉴于正常说话者和紊乱说话者之间的说话速度不匹配以及紊乱说话者之间的差异性较大，在将正常说话者修改为紊乱说话者时，采用了说话者依赖性扰动因子。扰动因子通过音素分析来得到。</p>
 <p>我们使用基于HTK的GMM-HMM系统进行强制对齐，以获得帧级音素对齐，然后计算每个说话人的平均音素时长，符号如下<br>$$<br>l_{C_i}\leftarrow control\ speaker\ C_i \<br>l_{D_j}\leftarrow dysarthric\ speaker\ D_j<br>$$<br>对于dysarthric speaker D<sub>j</sub>，我们使用如下公式计算<br>$$<br>F_{D_j}=\frac{l_{\overline C}}{l_{D_j}}\<br>l_{\overline C} = average\ of\ l_{C_i}<br>$$<br>F<sub>D</sub>作为扰动因子用来修改正常语音到紊乱说话人D<sub>j</sub>的语音。</p>
 <h3 id="Baseline-ASR-System-Description"><a href="#Baseline-ASR-System-Description" class="headerlink" title="Baseline ASR System Description"></a>Baseline ASR System Description</h3><h4 id="Hybrid-Deep-Neural-Network-Architecture"><a href="#Hybrid-Deep-Neural-Network-Architecture" class="headerlink" title="Hybrid Deep Neural Network Architecture"></a>Hybrid Deep Neural Network Architecture</h4><p>hybrid DNN声学模型的结构包括7个隐藏层。每个隐藏层都包含一组基本的神经元运算，按顺序执行，也就是affine transformation (绿色), ReLU激活函数 (黄色)和batch normalization(橙色)。除此之外，linear bottleneck projections (淡绿色) 应用在中间五层的输入上来达到减少网络参数的作用。Dropout操作(灰色)应用在前六层的输出上来阻止过拟合。Softmax激活函数(深绿色)用作输出层。</p>
 <p>为了加速训练过程和规避梯度消失问题，两个skip connection用来连接第一层的输出到第三层和第四层的输出到第六层。图一展示了hybrid DNN系统的结构。</p>
-<p>![image-20210120232218934](H:\github page\Hexo\source_posts\Investigation of Data Augmentation Techniques for Disordered Speech Recognition\image-20210120232218934.png)</p>
+<p><img src="/2021/01/20/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210120232218934.png" alt="image-20210120232218934"></p>
 <p>多任务学习(MTL)用来训练hybrid DNN系统，两个任务分别是帧级别的绑定三音素状态任务和单因素对齐任务。对齐通过基于HTK的GMM-HMM系统得到。在标签中接入帧级别的单因素对齐减少了不可靠帧级别三音素状态识别的过拟合风险，损失函数如下：<br>$$<br>L_{MTL}=\lambda·L_{tristate}+(1-\lambda)·L_{mono}<br>$$<br>其中L<sub>tristate</sub>是绑定三音素状态任务的交叉熵损失函数，L<sub>mono</sub>是单音素任务的交叉熵损失函数；λ是一个0-1的可调的数。</p>
+<h4 id="LHUC-Based-Speaker-Adaptive-Training"><a href="#LHUC-Based-Speaker-Adaptive-Training" class="headerlink" title="LHUC Based Speaker Adaptive Training"></a>LHUC Based Speaker Adaptive Training</h4><p>说话人级别的LHUC放缩因子被用在第一层ReLU激活函数的输出上。LHUC因子的有监督估计在训练阶段进行，这些因子和网络参数每一个mini-batch一起更新。无监督的LHUC自适应用在测试阶段，每一个句子更新一次。</p>
+<h3 id="Experiments-and-Results"><a href="#Experiments-and-Results" class="headerlink" title="Experiments and Results"></a>Experiments and Results</h3><h4 id="Task-Description"><a href="#Task-Description" class="headerlink" title="Task Description"></a>Task Description</h4><p>UASpeech是一个孤立词识别任务，包括16个紊乱说话人和13个正常说话人。语料库包含了155个常用单词和300个不常用单词。每个说话人有3个块，每个包含全部的155个常用单词和三分之一的不常用单词。把29个说话人的分块1和分块3作为训练集，分块2的16个紊乱说话人作为测试集。使用GMM-HMM系统去除多余的silence。</p>
+<p>对于没有数据增量的baseline系统，训练数据包括99195个句子，大概30.6小时，测试集包含26520个句子，大概9个小时。</p>
+<h4 id="Experiment-Setup"><a href="#Experiment-Setup" class="headerlink" title="Experiment Setup"></a>Experiment Setup</h4><p>HTK用来实现VTLP；Sox的tempo command用来实现基于WSOLA的TP；Sox的speed command用来SP。三组全局扰动因子被应用在紊乱的语音上：{0.9, 1.1}, {0.9, 0.95, 1.05, 1.1} 和 {0.85, 0.9, 0.95, 1.05, 1.1, 1.15}。</p>
+<p>说话人级别的放缩值如图2所示</p>
+<p><img src="/2021/01/20/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210121222601607.png" alt="image-20210121222601607"></p>
+<p>hybird DNN声学模型用Kaldi实现。一个9帧的上下文窗口被使用。输入是80维度的filter bank + Δ 特征。前六个隐藏层每一层有2000个神经元；linear bottleneck projection的维度是200，dropout的比率是20%，第七个隐藏层包括100个神经元；系统使用RMSProp优化器的后向传播。</p>
+<p>对于多任务学习，任务权重λ设置为0.5.</p>
+<p>解码时使用的语言模型是uniform language model。</p>
+<h4 id="Performance-of-Data-Augmentation"><a href="#Performance-of-Data-Augmentation" class="headerlink" title="Performance of Data Augmentation"></a>Performance of Data Augmentation</h4><p>表2展示了不用数据增量方法的表现。</p>
+<p><img src="/2021/01/20/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210121223626712.png" alt="image-20210121223626712"></p>
+<p>我们可以发现以下几点</p>
+<ol>
+<li>Sys 3-5说明对于正常语音，SP的效果最好，相比Sys 1的baseline，可以得到1.53%的绝对WER减少</li>
+<li>Sys 6-8说明对于紊乱语音，也是SP效果最好。因此之后用SP来生成更多的数据增量方法。</li>
+<li>Sys 8-10说明 {0.9, 0.95, 1.05, 1.1} (4x) 比 {0.85, 0.9, 0.95, 1.05, 1.1, 1.15} (6x) 和 {0.9, 1.1}(2x)要好。</li>
+<li>Sys 8-9, 11-12说明同时对正常语音和紊乱语音做数据增量能获得更多的表现提升，可以看到WER的绝对减少有0.94% (Sys 12 相对 Sys 9)，而仅仅增加正常语音，只能有微小的提升 (Sys 12 相比 Sys 11). 表现最好的是Sys 12，相比baseline (Sys 1) 提供了WER2.92%的绝对提升 (9.3%的相对提升).</li>
+</ol>
+<h4 id="Performance-of-LHUC-SAT"><a href="#Performance-of-LHUC-SAT" class="headerlink" title="Performance of LHUC SAT"></a>Performance of LHUC SAT</h4><p>增加的数据被分发给目标紊乱说话者来进行说话者级别的LHUC自适应。这带来了2.16%的绝对WER下降 (Sys 14相对Sys 12).最后使用最好的增量方法的说话人适应系统得到了总体（包括16个说话人）26.37%的WER。</p>
+<p>这相当于比UASpeech上公布的最佳系统的绝对WER降低了1.51%，如表3所示。</p>
+<p><img src="/2021/01/20/Investigation%20of%20Data%20Augmentation%20Techniques%20for%20Disordered%20Speech%20Recognition/image-20210121235103429.png" alt="image-20210121235103429"></p>
 
     </div>
 
@@ -369,7 +404,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Augmentation"><span class="nav-number">3.</span> <span class="nav-text">Data Augmentation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VTLP-Based-Data-Augmentation"><span class="nav-number">3.1.</span> <span class="nav-text">VTLP Based Data Augmentation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tempo-Perturbation-Based-Data-Augmentation"><span class="nav-number">3.2.</span> <span class="nav-text">Tempo Perturbation Based Data Augmentation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Speed-Perturbation-Based-Data-Augmentation"><span class="nav-number">3.3.</span> <span class="nav-text">Speed Perturbation Based Data Augmentation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Speaker-Dependent-Perturbation-Factor-Estimation"><span class="nav-number">3.4.</span> <span class="nav-text">Speaker Dependent Perturbation Factor Estimation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Baseline-ASR-System-Description"><span class="nav-number">4.</span> <span class="nav-text">Baseline ASR System Description</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hybrid-Deep-Neural-Network-Architecture"><span class="nav-number">4.1.</span> <span class="nav-text">Hybrid Deep Neural Network Architecture</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Augmentation"><span class="nav-number">3.</span> <span class="nav-text">Data Augmentation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VTLP-Based-Data-Augmentation"><span class="nav-number">3.1.</span> <span class="nav-text">VTLP Based Data Augmentation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tempo-Perturbation-Based-Data-Augmentation"><span class="nav-number">3.2.</span> <span class="nav-text">Tempo Perturbation Based Data Augmentation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Speed-Perturbation-Based-Data-Augmentation"><span class="nav-number">3.3.</span> <span class="nav-text">Speed Perturbation Based Data Augmentation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Speaker-Dependent-Perturbation-Factor-Estimation"><span class="nav-number">3.4.</span> <span class="nav-text">Speaker Dependent Perturbation Factor Estimation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Baseline-ASR-System-Description"><span class="nav-number">4.</span> <span class="nav-text">Baseline ASR System Description</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hybrid-Deep-Neural-Network-Architecture"><span class="nav-number">4.1.</span> <span class="nav-text">Hybrid Deep Neural Network Architecture</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LHUC-Based-Speaker-Adaptive-Training"><span class="nav-number">4.2.</span> <span class="nav-text">LHUC Based Speaker Adaptive Training</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Experiments-and-Results"><span class="nav-number">5.</span> <span class="nav-text">Experiments and Results</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Task-Description"><span class="nav-number">5.1.</span> <span class="nav-text">Task Description</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Experiment-Setup"><span class="nav-number">5.2.</span> <span class="nav-text">Experiment Setup</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Performance-of-Data-Augmentation"><span class="nav-number">5.3.</span> <span class="nav-text">Performance of Data Augmentation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Performance-of-LHUC-SAT"><span class="nav-number">5.4.</span> <span class="nav-text">Performance of LHUC SAT</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
