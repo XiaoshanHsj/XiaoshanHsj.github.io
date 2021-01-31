@@ -27,11 +27,20 @@
 <meta property="og:site_name" content="XiaoshanHsj">
 <meta property="og:description" content="Deep Neural Network Based Acoustic-to-articulatory Inversion Using Phone Sequence Information论文学习">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/image-20210118230508000.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/image-20210119163916125.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/image-20210119165543810.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/image-20210119194041961.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/image-20210119214813556.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/image-20210119222139854.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/image-20210119224712651.png">
+<meta property="og:image" content="https://xiaoshanhsj.github.io/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/image-20210119224934247.png">
 <meta property="article:published_time" content="2021-01-18T12:52:11.000Z">
-<meta property="article:modified_time" content="2021-01-19T14:51:12.000Z">
+<meta property="article:modified_time" content="2021-01-31T08:09:22.000Z">
 <meta property="article:author" content="Shujie Hu">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoshanhsj.github.io/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/image-20210118230508000.png">
 
 <link rel="canonical" href="https://xiaoshanhsj.github.io/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/">
 
@@ -131,17 +140,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">15</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">18</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">20</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -229,7 +238,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-19 22:51:12" itemprop="dateModified" datetime="2021-01-19T22:51:12+08:00">2021-01-19</time>
+                <time title="修改时间：2021-01-31 16:09:22" itemprop="dateModified" datetime="2021-01-31T16:09:22+08:00">2021-01-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -260,30 +269,30 @@
 <p>第一类是生成模型，使用HMMs来对acoustic和articulatory数据进行联合建模，比如一些有效的模型比如multiple regression HMM和generalized variable parameter HMMs。这些方法的一个问题就是需要句子的音素序列信息。一般来说，得到转录标注是不简单的，同时使用ASR的话会引入错误导致转换效果有明显的下降。</p>
 <p>第二种是广义的非线性回归技术，以ANNs为代表。早期研究使用传统的浅层MLPs。这些模型最开始用来直接从acoustic特征映射到articulatory movements，之后用MDNs或者RNNs来生成articulatory trajectory 密度分布参数。这些技术利用了神经网络固有的强大泛化性能和序列建模能力。训练阶段不用使用phone或者viseme信息。相反，它们是通过隐藏层的呈现，以一种无监督的方式隐性学习的。因此不同音素或者viseme单元的相邻acoustic或者articulatory帧的区别是不会被学习到的。这被发现在转换过程中会产生噪音articulatory movement trajectories。</p>
 <p>为了解决这个问题，叠加的DNN和RNN转换方法被提出来。一个使用声学特征输入的DNN或者RNN底层音素分类用来产生瓶颈特征。这些内容使用传统的声学前端进行增强然后喂到一个顶层的DNN或者RNN网络articulatory转换器中。</p>
-<h3 id="ANN-based-articulatory-inversion"><a href="#ANN-based-articulatory-inversion" class="headerlink" title="ANN based articulatory inversion"></a>ANN based articulatory inversion</h3><p>![image-20210118230508000](H:\github page\Hexo\source_posts\Deep Neural Network Based Acoustic-to-articulatory\image-20210118230508000.png)</p>
+<h3 id="ANN-based-articulatory-inversion"><a href="#ANN-based-articulatory-inversion" class="headerlink" title="ANN based articulatory inversion"></a>ANN based articulatory inversion</h3><p><img src="/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/image-20210118230508000.png" alt="image-20210118230508000"></p>
 <p>这两个模型的输入包括在每个时间实例上构建的声学特征的上下文窗口，隐藏层可以是feedforward层或者recurrent层。在MLP和DNN的a2a转换网络中，Sigmoid或者线性激活函数用在输出层。静止的articulatory特征用来当作有监督的标签。相反的，一个特别设计的，用于预测GMM基准的articulatory trajectory参数的输出层用在MDNs或者深层MDNs中。通常，HMM方法中GMM层中会使用一个单高斯组件。在转换的时候，先计算每一帧的高斯组件参数，之后用最大似然参数生成(MLPG)算法来生成静止的articulatory feature。</p>
 <h3 id="Improved-ANN-based-articulatory-inversion-using-phone-sequence-information"><a href="#Improved-ANN-based-articulatory-inversion-using-phone-sequence-information" class="headerlink" title="Improved ANN based articulatory inversion using phone sequence information"></a>Improved ANN based articulatory inversion using phone sequence information</h3><h4 id="Using-input-phone-features"><a href="#Using-input-phone-features" class="headerlink" title="Using input phone features"></a>Using input phone features</h4><p>标准的声学特征被加上了二进制的单因素标签。使用这个结构，句子的音素序列在训练和测试中都需要。如图2左边的结构。</p>
 <h4 id="Multi-task-learning-based-inversion"><a href="#Multi-task-learning-based-inversion" class="headerlink" title="Multi-task learning based inversion"></a>Multi-task learning based inversion</h4><p>音素信息可以和articulatory特征同时建模——用DNNs转换进行多任务学习。在这些系统中，主任务和传统的DNN转换器一样，副任务是使用有监督标签进行单音素分类。如图2右边的结构。</p>
-<p>![image-20210119163916125](H:\github page\Hexo\source_posts\Deep Neural Network Based Acoustic-to-articulatory\image-20210119163916125.png)</p>
+<p><img src="/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/image-20210119163916125.png" alt="image-20210119163916125"></p>
 <h4 id="Hierarchical-NN-based-articulatory-inversion"><a href="#Hierarchical-NN-based-articulatory-inversion" class="headerlink" title="Hierarchical NN based articulatory inversion"></a>Hierarchical NN based articulatory inversion</h4><p>这个stacked, hierarchical ANN architecture包含了一个底层的分类子网络和一个顶层转换子网络。底层音素分类器是一个DNN或者RNN，它的输入时声学特征，输出是单音素标签，这个分类器可以用来生成瓶颈特征。瓶颈特征可以代表音素序列信息的潜在表示；瓶颈特征加上传统的声学特征，然后送到顶层的articulatory转换DNN或者RNN自网络中。如图3所示。</p>
-<p>![image-20210119165543810](H:\github page\Hexo\source_posts\Deep Neural Network Based Acoustic-to-articulatory\image-20210119165543810.png)</p>
+<p><img src="/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/image-20210119165543810.png" alt="image-20210119165543810"></p>
 <p>构建这样一个NN系统主要分成两个阶段。第一个阶段，底层网络使用传统的交叉熵准则。在第二个阶段，单音素分类器产生的瓶颈层特征被加到acoustic特征上，组成上下文的tandem特征来训练这个转换网络。但是这个阶段有两个issue需要解决。</p>
 <p>首先，为了保证训练过程中稳定和快速的收敛，最顶层的子网络使用一个传统的DNN/RNN转换器模型进行初始化，传统的转换器模型是没有瓶颈特征的，因此瓶颈特征的权重的初始化是随机的。第二个就是只有输入层与瓶颈特征有关的权重需要全部更新，而剩余的权重只需要微调，这样的话要对这两个部分设置不同的学习率才行。为了让转换子网络处理瓶颈特征更加高效，输入层连接瓶颈特征的权重乘上一个因子α=2。</p>
 <h3 id="Hierarchical-inversion-bottleneck-feature-for-tandem-GVP-HMM-based-inversion"><a href="#Hierarchical-inversion-bottleneck-feature-for-tandem-GVP-HMM-based-inversion" class="headerlink" title="Hierarchical inversion bottleneck feature for tandem GVP-HMM based inversion"></a>Hierarchical inversion bottleneck feature for tandem GVP-HMM based inversion</h3><p>当<strong>测试</strong>句子的音素序列是知道的，hierarchical inversion NN 系统也能当作辅助特征提取器，辅助特征用于generalized variable parameter HMMs (GVP-HMMs)可以得到更多的提升。这需要在顶层的转换子网络中添加一个瓶颈层，如图4</p>
-<p>![image-20210119194041961](H:\github page\Hexo\source_posts\Deep Neural Network Based Acoustic-to-articulatory\image-20210119194041961.png)</p>
+<p><img src="/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/image-20210119194041961.png" alt="image-20210119194041961"></p>
 <p>对于帧t的N维的瓶颈特征向量表示为<br>$$<br>f_t^{BN}=[v_{t,1}, …, v_{t,j}, …,v_{t,N}]<br>$$<br>多项式的阶为P，一个P*N+1维度的Vandermonde向量构建如下<br>$$<br>v_t^{T}=[1, \hat f_{t,1}, …,\hat f_{t,p},…,\hat f_{t,P}]^{T}<br>$$<br>N维的第p个子向量定义为<br>$$<br>\hat f_{t,p} =[v_{t,1}^p,…,v_{t,j}^p,…,v_{t,N}^p]<br>$$<br>其中Vandermonde向量用来训练tandem GVP-HMMs。GVP-HMMs对articulatory和acoustic流的联合状态概率函数进行建模。在第t帧，对于一个给定的状态q，可以得到<br>$$<br>b_q(a_t,o_t)=\Nu(a_t;\mu_q^{(a)}(v_t),Σ_q^{(a)}(v_t))\Nu(o_t;\mu_q^{(o)},Σ_q^{(o)})<br>$$<br>其中a<sub>t</sub>和o<sub>t</sub>是articulatory和acoustic特征。</p>
 <p>GVP-HMMs提供了articulatory和acoustic复杂关系的灵活建模方式。高斯均值和方差的trajectory函数u<sub>q</sub>(·)，Σ<sub>q</sub>(·)能够被给定的辅助特征的P阶多项式表示。当对角协方差被使用时，第i维的均值和方差的trajectory是<br>$$<br>\mu_{q,i}^{(a)}(v_t)=v_t·c^{(\mu_{q,i}^{(a)})} \<br>\sigma_{q,i,i}^{(a)}(v_t)=\hat \sigma _{q,i,i}^{a} \ v_t·c^{(\sigma_{q,i,i}^{(a)})}<br>$$<br>其中c<sup>(·)</sup>是P*N+1维的多项式系数向量，</p>
-<p>![image-20210119214813556](H:\github page\Hexo\source_posts\Deep Neural Network Based Acoustic-to-articulatory\image-20210119214813556.png)是传统的HMM方差估计。系数向量可以用最大似然更新方案来估计。利用高效的贝叶斯模型复杂度控制技术，可以优化不同参数的多项式阶数P所代表的GVP-HMM模型底层结构。有了GVP-HMM状态参数trajectories，最终的articulatory movements就可以使用MLPG算法生成了。</p>
+<p><img src="/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/image-20210119214813556.png" alt="image-20210119214813556">是传统的HMM方差估计。系数向量可以用最大似然更新方案来估计。利用高效的贝叶斯模型复杂度控制技术，可以优化不同参数的多项式阶数P所代表的GVP-HMM模型底层结构。有了GVP-HMM状态参数trajectories，最终的articulatory movements就可以使用MLPG算法生成了。</p>
 <h3 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h3><h4 id="EMA-data-and-experiment-setup"><a href="#EMA-data-and-experiment-setup" class="headerlink" title="EMA data and experiment setup"></a>EMA data and experiment setup</h4><p>普通话语音和相关的EMA数据用一个Carstens AG-501 EMA设备进行记录。忽略一些小的movements，按上唇、下唇、舌背、tongue dorsum、舌尖和下颌的x-和y-坐标，以及口腔右角（与左角对称）的z-坐标，依次选取每一帧的13维静态EMA特征向量，并通过将平均静态位置设置为零进一步归一化。39维的MFCC声学特征从语音中提取。利用均方根误差(RMSE)和相关性来评估预测的EMA数据。其中训练、验证和测试数据分别包括2950，50和50个句子，总共2.9小时。</p>
 <p>articulatory转换DNNs包括5个512个神经元的前向层。作比较的RNN有3个每层512个神经元的前向层，2个128个单元的LSTM层和用于维度减少的递归投影层。一个11帧MFCC的上下文窗口只选择每隔一帧作为其输入，13个静态EMA特征作为目标。</p>
 <p>分类DNN和RNN使用相同的声学特征作为输入，118个tonal单音素标签作为输出目标。分类子网络产生39维的特征，然后和声学特征串联后来训练articulatory转换DNN或者RNN。除此之外，音素输入特征和多任务学习转换ANNs也会被训练，MDN也是。最后每个系统表现最好的特征会被用来产生GVP-HMM的辅助特征。Kaldi用来训练所有的神经网络，HTK用来训练GVP-HMM。对于所有的结果，基于统计意义测试的paired t-test用RMSE reduction.</p>
-<h4 id="Experiments-results"><a href="#Experiments-results" class="headerlink" title="Experiments results"></a>Experiments results</h4><p>![image-20210119222139854](H:\github page\Hexo\source_posts\Deep Neural Network Based Acoustic-to-articulatory\image-20210119222139854.png)</p>
+<h4 id="Experiments-results"><a href="#Experiments-results" class="headerlink" title="Experiments results"></a>Experiments results</h4><p><img src="/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/image-20210119222139854.png" alt="image-20210119222139854"></p>
 <p>其中p值栏仅显示与相应的 “Phn “NN基线相比的RMSE降低意义。</p>
 <p>可以看到hierarchical转换系统都超过了baseline DNNs。RNN的底层音素分类子网络能够比DNN音素分类网络能够保留长时信息。同时这在用底层产生的瓶颈特征的顶层网络也有所体现（line 7，8），当两个网络都使用RNN时表现最好。</p>
 <p>使用瓶颈特征的混合GVP-HMM转换系统表现如下，其中RNN是表1的line 9，DNN是line 1，hierarchical systems是line 8 和 line 14.</p>
-<p>![image-20210119224712651](H:\github page\Hexo\source_posts\Deep Neural Network Based Acoustic-to-articulatory\image-20210119224712651.png)</p>
+<p><img src="/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/image-20210119224712651.png" alt="image-20210119224712651"></p>
 <p>图5展示了一个普通话语音的EMA trajectory的例子，分别使用传统的RNN和hierarchical inversion RNN和GVP-HMM系统 。</p>
-<p>![image-20210119224934247](H:\github page\Hexo\source_posts\Deep Neural Network Based Acoustic-to-articulatory\image-20210119224934247.png)</p>
+<p><img src="/2021/01/18/Deep%20Neural%20Network%20Based%20Acoustic-to-articulatory/image-20210119224934247.png" alt="image-20210119224934247"></p>
 
     </div>
 
@@ -400,20 +409,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
