@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Hi, there, I'm Shujie!"
+title: ""
 author_profile: true
 redirect_from: 
   - /about/
@@ -24,18 +24,18 @@ Selected Publications
 ### Journal Papers
 -
 ### Conference Papers
-- 
+-
 ### Under Review
 -
 
 Experience
 =========
-- 2023.8 - Present, Research Intern in Natural Language Computing Group, Microsoft Research Asia
+- 2023.08 - Present, Research Intern in Natural Language Computing Group, Microsoft Research Asia
 
 Honors and Awards
 ==========
-- 2023.6, ISCA Travel Grants
-- 2021.3, Outstanding Graduate Of Sichuan Province
+- 2023.06, ISCA Travel Grants
+- 2021.03, Outstanding Graduate Of Sichuan Province
 - 2019.11, National Scholarship for Undergraduates
 
 Teaching Experience
