@@ -15,9 +15,8 @@ My recent research interests focus on speech processing and recognition, includi
 
 Education
 ===========
-Since 2021, Ph.D. student, The Chinese University of Hong Kong (CUHK).
-
-2016-2021, B.Eng., Computer Science and Technology, SiChuan University (SCU).
+- Since 2021, Ph.D. student, The Chinese University of Hong Kong (CUHK).
+- 2016-2021, B.Eng., Computer Science and Technology, SiChuan University (SCU).
 
 Selected Publications
 ===========
