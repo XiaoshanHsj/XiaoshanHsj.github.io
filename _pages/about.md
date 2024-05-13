@@ -30,7 +30,7 @@ A full list of publications can be found at [here](https://scholar.google.com/ci
 **Shujie Hu**, Xurong Xie, Mengzhe Geng, Mingyu Cui, Jiajun Deng, Guinan Li, Tianzi Wang, Helen Meng, Xunying Liu  
 *ISCA INTERSPEECH 2023, Dublin, Ireland*
 - Exploiting Cross Domain Acoustic-to-Articulatory Inverted Features for Disordered Speech Recognition  
-**Shujie Hu***, Shansong Liu*, Xurong Xie, Mengzhe Geng, Tianzi Wang, Shoukang Hu, Mingyu Cui, Xunying Liu, Helen Meng  
+**Shujie Hu\***, Shansong Liu\*, Xurong Xie, Mengzhe Geng, Tianzi Wang, Shoukang Hu, Mingyu Cui, Xunying Liu, Helen Meng  
 *IEEE ICASSP 2022, Singapore*
 
 ### Preprint
