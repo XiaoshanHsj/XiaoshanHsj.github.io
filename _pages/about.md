@@ -21,16 +21,26 @@ A full list of publications can be found at [here](https://scholar.google.com/ci
 ### Journal Papers
 -
 ### Conference Papers
--
-### Under Review
--
+- Exploring Self-supervised Pre-trained ASR Models for Dysarthric and Elderly Speech Recognition
+**Shujie Hu**, Xurong Xie, Zengrui Jin, Mengzhe Geng, Yi Wang, Mingyu Cui, Jiajun Deng, Xunying Liu, Helen Meng
+*IEEE ICASSP 2023, Rhodes Island, Greece*
+- Exploiting Cross-Domain And Cross-Lingual Ultrasound Tongue Imaging Features For Elderly And Dysarthric Speech Recognition
+**Shujie Hu**, Xurong Xie, Mengzhe Geng, Mingyu Cui, Jiajun Deng, Guinan Li, Tianzi Wang, Helen Meng, Xunying Liu
+*ISCA INTERSPEECH 2023, Dublin, Ireland*
+- Exploiting Cross Domain Acoustic-to-Articulatory Inverted Features for Disordered Speech Recognition
+**Shujie Hu***, Shansong Liu*, Xurong Xie, Mengzhe Geng, Tianzi Wang, Shoukang Hu, Mingyu Cui, Xunying Liu, Helen Meng
+*IEEE ICASSP 2022, Singapore*
+### Preprint
+- WavLLM: Towards Robust and Adaptive Speech Large Language Model
+**Shujie Hu**, Long Zhou, Shujie Liu, Sanyuan Chen, Hongkun Hao, Jing Pan, Xunying Liu, Jinyu Li, Sunit Sivasankaran, Linquan Liu, Furu Wei
+*arXiv:2404.00656*
 
 ## 💼 Experience
 - 2023.08 - Present, Research Intern in Natural Language Computing Group, Microsoft Research Asia
 
 ## 🎖 Honors and Awards
 - 2023.06, ISCA Travel Grants
-- 2021.03, Outstanding Graduate Of Sichuan Province
+- 2021.03, Outstanding Graduate of Sichuan Province
 - 2019.11, National Scholarship for Undergraduates
 
 ## 🧑‍🏫 Teaching Experience
