@@ -39,7 +39,7 @@ A full list of publications can be found at [here](https://scholar.google.com/ci
 *arXiv:2404.00656*
 
 ## 💼 Experience
-- 2023.08 - Present, Research Intern in Natural Language Computing Group, Microsoft Research Asia
+- 2023.08 - Present, Research Intern in Natural Language Computing Group, Microsoft Research Asia, Beijing, mentored by [Dr. Long Zhou](https://long-zhou.github.io/) and [Dr. Shujie Liu](https://www.microsoft.com/en-us/research/people/shujliu/).
 
 ## 🎖 Honors and Awards
 - 2023.06, ISCA Travel Grants
