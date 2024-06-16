@@ -13,7 +13,7 @@ I'm currently a Ph.D. student at The Chinese University of Hong Kong (CUHK), Hon
 My recent research interests focus on speech processing and recognition, including multimodal speech recognition and self-supervised learning pre-trained speech fundation models. I'm also interested in generative AI and integrating speech with large language models.
 
 ## 📖 Educations
-- Since 2021, Ph.D. student, The Chinese University of Hong Kong (CUHK).
+- 2021-2025 (expected), Ph.D. student, The Chinese University of Hong Kong (CUHK).
 - 2016-2021, B.Eng., Computer Science and Technology, SiChuan University (SCU).
 
 ## 📝 Selected Publications
