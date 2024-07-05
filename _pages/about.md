@@ -20,8 +20,8 @@ My recent research interests focus on speech processing and recognition, includi
 A full list of publications can be found at [here](https://scholar.google.com/citations?user=zyk30CYAAAAJ&hl=zh-CN).
 
 ### Journal Papers
-- Self-supervised ASR Models and Features For Dysarthric and Elderly Speech Recognition
-**Shujie Hu**, Xurong Xie, Mengzhe Geng, Zengrui Jin, Jiajun Deng, Guinan Li, Yi Wang, Mingyu Cui, Tianzi Wang, Helen Meng, Xunying Liu
+- Self-supervised ASR Models and Features For Dysarthric and Elderly Speech Recognition  
+**Shujie Hu**, Xurong Xie, Mengzhe Geng, Zengrui Jin, Jiajun Deng, Guinan Li, Yi Wang, Mingyu Cui, Tianzi Wang, Helen Meng, Xunying Liu  
 *IEEE/ACM Transactions on Audio, Speech and Language Processing*
 
 ### Conference Papers
