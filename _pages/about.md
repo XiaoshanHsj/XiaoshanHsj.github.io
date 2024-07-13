@@ -22,7 +22,7 @@ A full list of publications can be found at [here](https://scholar.google.com/ci
 ### Journal Papers
 - Self-supervised ASR Models and Features For Dysarthric and Elderly Speech Recognition  
 **Shujie Hu**, Xurong Xie, Mengzhe Geng, Zengrui Jin, Jiajun Deng, Guinan Li, Yi Wang, Mingyu Cui, Tianzi Wang, Helen Meng, Xunying Liu  
-*IEEE/ACM Transactions on Audio, Speech and Language Processing*
+*IEEE/ACM Transactions on Audio, Speech and Language Processing, 2024*
 
 ### Conference Papers
 - Exploring Self-supervised Pre-trained ASR Models for Dysarthric and Elderly Speech Recognition  
