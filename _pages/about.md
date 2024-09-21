@@ -25,6 +25,9 @@ A full list of publications can be found at [here](https://scholar.google.com/ci
 *IEEE/ACM Transactions on Audio, Speech and Language Processing, 2024*
 
 ### Conference Papers
+- WavLLM: Towards Robust and Adaptive Speech Large Language Model  
+**Shujie Hu**, Long Zhou, Shujie Liu, Sanyuan Chen, Lingwei Meng, Hongkun Hao, Jing Pan, Xunying Liu, Jinyu Li, Sunit Sivasankaran, Linquan Liu, Furu Wei  
+*EMNLP Findings 2024, Miami, Florida*
 - Exploring Self-supervised Pre-trained ASR Models for Dysarthric and Elderly Speech Recognition  
 **Shujie Hu**, Xurong Xie, Zengrui Jin, Mengzhe Geng, Yi Wang, Mingyu Cui, Jiajun Deng, Xunying Liu, Helen Meng  
 *IEEE ICASSP 2023, Rhodes Island, Greece*
@@ -36,9 +39,9 @@ A full list of publications can be found at [here](https://scholar.google.com/ci
 *IEEE ICASSP 2022, Singapore*
 
 ### Preprint
-- WavLLM: Towards Robust and Adaptive Speech Large Language Model  
-**Shujie Hu**, Long Zhou, Shujie Liu, Sanyuan Chen, Hongkun Hao, Jing Pan, Xunying Liu, Jinyu Li, Sunit Sivasankaran, Linquan Liu, Furu Wei  
-*arXiv:2404.00656*
+- Large Language Model Can Transcribe Speech in Multi-Talker Scenarios with Versatile Instructions  
+Lingwei Meng\*, **Shujie Hu\***, Jiawen Kang, Zhaoqing Li, Yuejiao Wang, Wenxuan Wu, Xixin Wu, Xunying Liu, Helen Meng  
+*arXiv:2409.08596*
 
 ## 💼 Experience
 - 2023.08 - Present, Research Intern in Natural Language Computing Group, Microsoft Research Asia, Beijing, mentored by [Dr. Long Zhou](https://long-zhou.github.io/) and [Dr. Shujie Liu](https://www.microsoft.com/en-us/research/people/shujliu/).
