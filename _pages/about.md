@@ -42,6 +42,9 @@ A full list of publications can be found at [here](https://scholar.google.com/ci
 - Large Language Model Can Transcribe Speech in Multi-Talker Scenarios with Versatile Instructions  
 Lingwei Meng\*, **Shujie Hu\***, Jiawen Kang, Zhaoqing Li, Yuejiao Wang, Wenxuan Wu, Xixin Wu, Xunying Liu, Helen Meng  
 *arXiv:2409.08596*
+- ARLON: Boosting Diffusion Transformers with Autoregressive Models for Long Video Generation  
+Zongyi Li\*, **Shujie Hu\***, Shujie Liu, Long Zhou, Jeongsoo Choi, Lingwei Meng, Xun Guo, Jinyu Li, Hefei Ling, Furu Wei  
+*arXiv:2410.20502*
 
 ## 💼 Experience
 - 2023.08 - Present, Research Intern in Natural Language Computing Group, Microsoft Research Asia, Beijing, mentored by [Dr. Long Zhou](https://long-zhou.github.io/) and [Dr. Shujie Liu](https://www.microsoft.com/en-us/research/people/shujliu/).
