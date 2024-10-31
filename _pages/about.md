@@ -47,7 +47,7 @@ Zongyi Li\*, **Shujie Hu\***, Shujie Liu, Long Zhou, Jeongsoo Choi, Lingwei Meng
 *arXiv:2410.20502*
 
 ## 💼 Experience
-- 2023.08 - Present, Research Intern in Natural Language Computing Group, Microsoft Research Asia, Beijing, mentored by [Dr. Long Zhou](https://long-zhou.github.io/) and [Dr. Shujie Liu](https://www.microsoft.com/en-us/research/people/shujliu/).
+- 2023.08 - 2024.09, Research Intern in Natural Language Computing Group, Microsoft Research Asia, Beijing, mentored by [Dr. Long Zhou](https://long-zhou.github.io/) and [Dr. Shujie Liu](https://www.microsoft.com/en-us/research/people/shujliu/).
 
 ## 🎖 Honors and Awards
 - 2023.06, ISCA Travel Grants
