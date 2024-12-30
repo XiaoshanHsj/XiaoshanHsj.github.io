@@ -25,6 +25,9 @@ A full list of publications can be found at [here](https://scholar.google.com/ci
 *IEEE/ACM Transactions on Audio, Speech and Language Processing, 2024*
 
 ### Conference Papers
+- Large Language Model Can Transcribe Speech in Multi-Talker Scenarios with Versatile Instructions  
+Lingwei Meng\*, **Shujie Hu\***, Jiawen Kang, Zhaoqing Li, Yuejiao Wang, Wenxuan Wu, Xixin Wu, Xunying Liu, Helen Meng  
+*ICASSP 2025, Hyderabad, India*
 - WavLLM: Towards Robust and Adaptive Speech Large Language Model  
 **Shujie Hu**, Long Zhou, Shujie Liu, Sanyuan Chen, Lingwei Meng, Hongkun Hao, Jing Pan, Xunying Liu, Jinyu Li, Sunit Sivasankaran, Linquan Liu, Furu Wei  
 *EMNLP Findings 2024, Miami, Florida*
@@ -39,9 +42,9 @@ A full list of publications can be found at [here](https://scholar.google.com/ci
 *IEEE ICASSP 2022, Singapore*
 
 ### Preprint
-- Large Language Model Can Transcribe Speech in Multi-Talker Scenarios with Versatile Instructions  
-Lingwei Meng\*, **Shujie Hu\***, Jiawen Kang, Zhaoqing Li, Yuejiao Wang, Wenxuan Wu, Xixin Wu, Xunying Liu, Helen Meng  
-*arXiv:2409.08596*
+- Structured Speaker-Deficiency Adaptation of Foundation Models for Dysarthric and Elderly Speech Recognition  
+**Shujie Hu**, Xurong Xie, Mengzhe Geng, Jiajun Deng, Zengrui Jin, Tianzi Wang, Mingyu Cui, Guinan Li, Zhaoqing Li, Helen Meng, Xunying Liu  
+*arXiv:2412.18832*
 - ARLON: Boosting Diffusion Transformers with Autoregressive Models for Long Video Generation  
 Zongyi Li\*, **Shujie Hu\***, Shujie Liu, Long Zhou, Jeongsoo Choi, Lingwei Meng, Xun Guo, Jinyu Li, Hefei Ling, Furu Wei  
 *arXiv:2410.20502*
