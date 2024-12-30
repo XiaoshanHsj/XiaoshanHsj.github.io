@@ -50,6 +50,7 @@ Zongyi Li\*, **Shujie Hu\***, Shujie Liu, Long Zhou, Jeongsoo Choi, Lingwei Meng
 *arXiv:2410.20502*
 
 ## 💼 Experience
+- 2024.11 - present, Research Intern in Audio Lab, Huawei 2012 Lab, Hong Kong, work closely with [Dr. Jiajun Deng](https://jjdean321.github.io/), [Dr. Xiao Chen](https://www.linkedin.com/in/xiao-chen-065185167/?originalSubdomain=hk) and [Dr. Simon Lui](https://www.simonlui.com/about/).  
 - 2023.08 - 2024.09, Research Intern in Natural Language Computing Group, Microsoft Research Asia, Beijing, mentored by [Dr. Long Zhou](https://long-zhou.github.io/) and [Dr. Shujie Liu](https://www.microsoft.com/en-us/research/people/shujliu/).
 
 ## 🎖 Honors and Awards
