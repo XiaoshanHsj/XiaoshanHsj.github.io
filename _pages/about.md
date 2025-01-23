@@ -48,6 +48,9 @@ Lingwei Meng\*, **Shujie Hu\***, Jiawen Kang, Zhaoqing Li, Yuejiao Wang, Wenxuan
 - Structured Speaker-Deficiency Adaptation of Foundation Models for Dysarthric and Elderly Speech Recognition  
 **Shujie Hu**, Xurong Xie, Mengzhe Geng, Jiajun Deng, Zengrui Jin, Tianzi Wang, Mingyu Cui, Guinan Li, Zhaoqing Li, Helen Meng, Xunying Liu  
 *arXiv:2412.18832*
+- Autoregressive Speech Synthesis without Vector Quantization  
+Lingwei Meng, Long Zhou, Shujie Liu, Sanyuan Chen, Bing Han, **Shujie Hu**, Yanqing Liu, Jinyu Li, Sheng Zhao, Xixin Wu, Helen Meng, Furu Wei  
+*arXiv:2407.08551*
 
 ## 💼 Experience
 - 2024.11 - present, Research Intern in Audio Lab, Huawei 2012 Lab, Hong Kong, work closely with [Dr. Jiajun Deng](https://jjdean321.github.io/), [Dr. Xiao Chen](https://www.linkedin.com/in/xiao-chen-065185167/?originalSubdomain=hk) and [Dr. Simon Lui](https://www.simonlui.com/about/).  
