@@ -25,6 +25,9 @@ A full list of publications can be found at [here](https://scholar.google.com/ci
 *IEEE/ACM Transactions on Audio, Speech and Language Processing, 2024*
 
 ### Conference Papers
+- On-the-fly Routing for Zero-shot MoE Speaker Adaptation of Speech Foundation Models for Dysarthric Speech Recognition  
+**Shujie Hu**, Xurong Xie, Mengzhe Geng, Jiajun Deng, Huimeng Wang, Guinan Li, Chengxi Deng, Tianzi Wang, Mingyu Cui, Helen Meng, Xunying Liu  
+*ISCA INTERSPEECH 2025, Rotterdam, The Netherlands*
 - ARLON: Boosting Diffusion Transformers with Autoregressive Models for Long Video Generation  
 Zongyi Li\*, **Shujie Hu\***, Shujie Liu, Long Zhou, Jeongsoo Choi, Lingwei Meng, Xun Guo, Jinyu Li, Hefei Ling, Furu Wei  
 *ICLR 2025, Singapore*
@@ -43,17 +46,18 @@ Lingwei Meng\*, **Shujie Hu\***, Jiawen Kang, Zhaoqing Li, Yuejiao Wang, Wenxuan
 - Exploiting Cross Domain Acoustic-to-Articulatory Inverted Features for Disordered Speech Recognition  
 **Shujie Hu\***, Shansong Liu\*, Xurong Xie, Mengzhe Geng, Tianzi Wang, Shoukang Hu, Mingyu Cui, Xunying Liu, Helen Meng  
 *IEEE ICASSP 2022, Singapore*
+- Autoregressive Speech Synthesis without Vector Quantization  
+Lingwei Meng, Long Zhou, Shujie Liu, Sanyuan Chen, Bing Han, **Shujie Hu**, Yanqing Liu, Jinyu Li, Sheng Zhao, Xixin Wu, Helen Meng, Furu Wei  
+*ACL 2025, Vienna, Austria*
 
 ### Preprint
 - Structured Speaker-Deficiency Adaptation of Foundation Models for Dysarthric and Elderly Speech Recognition  
 **Shujie Hu**, Xurong Xie, Mengzhe Geng, Jiajun Deng, Zengrui Jin, Tianzi Wang, Mingyu Cui, Guinan Li, Zhaoqing Li, Helen Meng, Xunying Liu  
 *arXiv:2412.18832*
-- Autoregressive Speech Synthesis without Vector Quantization  
-Lingwei Meng, Long Zhou, Shujie Liu, Sanyuan Chen, Bing Han, **Shujie Hu**, Yanqing Liu, Jinyu Li, Sheng Zhao, Xixin Wu, Helen Meng, Furu Wei  
-*arXiv:2407.08551*
+
 
 ## 💼 Experience
-- 2024.11 - present, Research Intern in Audio Lab, Huawei 2012 Lab, Hong Kong, work closely with [Dr. Jiajun Deng](https://jjdean321.github.io/), [Dr. Xiao Chen](https://www.linkedin.com/in/xiao-chen-065185167/?originalSubdomain=hk) and [Dr. Simon Lui](https://www.simonlui.com/about/).  
+- 2024.11 - 2025.5, Research Intern in Audio Lab, Huawei 2012 Lab, Hong Kong, work closely with [Dr. Jiajun Deng](https://jjdean321.github.io/), [Dr. Xiao Chen](https://www.linkedin.com/in/xiao-chen-065185167/?originalSubdomain=hk) and [Dr. Simon Lui](https://www.simonlui.com/about/).  
 - 2023.08 - 2024.09, Research Intern in Natural Language Computing Group, Microsoft Research Asia, Beijing, mentored by [Dr. Long Zhou](https://long-zhou.github.io/) and [Dr. Shujie Liu](https://www.microsoft.com/en-us/research/people/shujliu/).
 
 ## 🎖 Honors and Awards
